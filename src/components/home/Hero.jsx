@@ -7,7 +7,7 @@ return(
 <section className="
 min-h-screen
 pt-28
-lg:pt-0
+lg:pt-15
 flex
 items-center
 ">
@@ -35,7 +35,7 @@ Boutique Homestay
 
 
 <h1 className="
-heading-xl
+heading-lg
 mt-5
 ">
 
@@ -46,7 +46,7 @@ Escape Into Comfort & Slow Living
 
 <p className="
 text-muted
-mt-8
+mt-5
 max-w-xl
 ">
 
@@ -95,7 +95,7 @@ className="
 w-full
 h-[350px]
 sm:h-[450px]
-lg:h-[650px]
+lg:h-[500px]
 object-cover
 rounded-[24px]
 "

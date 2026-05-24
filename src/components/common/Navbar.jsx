@@ -24,46 +24,22 @@ const navItems=[
 
 return(
 
-<nav className="fixed top-0 w-full z-50 ">
+<nav className="fixed top-0 w-full z-50">
 
-<div className="
-bg-white/10
-backdrop-blur-md
-border-b
-border-black/10
-">
+<div className="bg-white border-b border-black/10">
 
-<div className="
-container-custom
-h-20
-flex
-items-center
-justify-between
-">
+<div className="container-custom h-15 flex items-center justify-between">   
 
 <Link href="/">
 
-<h1 className="
-text-xl
-sm:text-2xl
-font-bold
-tracking-[4px]
-text-[var(--primary)]
-">
-
+<h1 className="text-xl sm:text-2xl font-bold tracking-[4px] text-[var(--primary)]">
 CALMING NOOK
 
 </h1>
 
 </Link>
 
-
-<div className="
-hidden
-md:flex
-gap-8
-items-center
-">
+<div className="hidden md:flex gap-8 items-center">
 
 {
 navItems.map((item)=>(
