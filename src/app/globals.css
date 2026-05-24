@@ -1,26 +1,191 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root{
+  --primary:#b84639;
+  --primary-dark:#7A2C22;
+
+  --paper:#F4EBDC;
+  --paper-dark:#E8DAC3;
+
+  --black:#111111;
+  --text:#5A534D;
+
+  --container:1400px;
+  --radius:28px;
+
+  --shadow:
+  0 10px 35px rgba(0,0,0,.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*{
+ 
+ box-sizing:border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html{
+ scroll-behavior:smooth;
+}
+
+body{
+ overflow-x:hidden;
+
+ background:var(--paper);
+
+ color:var(--black);
+
+ background-image:
+ radial-gradient(
+ rgba(0,0,0,.03) 1px,
+ transparent 1px
+ );
+
+ background-size:18px 18px;
+}
+
+
+.container-custom{
+ width:100%;
+ max-width:1400px;
+
+ margin:auto;
+
+ padding-left:16px;
+ padding-right:16px;
+}
+
+@media(min-width:640px){
+
+.container-custom{
+
+padding-left:24px;
+
+padding-right:24px;
+
+}
+
+}
+
+@media(min-width:1024px){
+
+.container-custom{
+
+padding-left:40px;
+
+padding-right:40px;
+
+}
+
+}
+
+
+.section{
+ padding:70px 0;
+}
+
+@media(min-width:768px){
+
+.section{
+padding:100px 0;
+}
+
+}
+
+
+.theme-card{
+
+background:rgba(255,255,255,.45);
+
+backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,.2);
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+transition:.4s;
+}
+
+.theme-card:hover{
+transform:translateY(-6px);
+}
+
+
+.primary-btn{
+
+padding:12px 22px;
+
+background:var(--primary);
+
+color:white;
+
+border-radius:999px;
+
+font-weight:600;
+
+transition:.4s;
+}
+
+.primary-btn:hover{
+
+background:var(--primary-dark);
+
+}
+
+
+.secondary-btn{
+
+padding:12px 22px;
+
+border:1px solid black;
+
+border-radius:999px;
+
+}
+
+
+.heading-xl{
+
+font-size:
+clamp(
+2.8rem,
+8vw,
+7rem
+);
+
+font-weight:800;
+
+line-height:.95;
+}
+
+
+.heading-lg{
+
+font-size:
+clamp(
+2rem,
+5vw,
+4rem
+);
+
+font-weight:700;
+}
+
+
+.text-muted{
+
+color:var(--text);
+
+line-height:2;
+
+}
+
+.page-spacing{
+  padding-top:100px;
+}
+
+@media(min-width:1024px){
+  .page-spacing{
+    padding-top:120px;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
