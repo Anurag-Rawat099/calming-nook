@@ -26,58 +26,51 @@ export default function Hero() {
 
         <div className="max-w-4xl">
 
-          <p
-            className="
-              uppercase
-              tracking-[8px]
-              text-white/80
-              text-xl
-              sm:text-2xl
-              mb-6
-            "
-          >
+          <p className="
+            uppercase
+            tracking-[8px]
+            text-white/80
+            text-xl
+            sm:text-2xl
+            mb-6
+          ">
             Welcome To Calming Nook
           </p>
 
-          <h1
-            className="
-            text-primary
-              font-bold
-              leading-tight
-              text-4xl
-              sm:text-5xl
-              lg:text-7xl
-            "
-          >
+          <h1 className="
+            text-white
+            font-bold
+            leading-tight
+            text-4xl
+            sm:text-5xl
+            lg:text-7xl
+          ">
             Escape Into
             <br />
             Peace & Mountains
           </h1>
 
-          <p
-            className="
-              mt-8
-              max-w-2xl
-              mx-auto
-              text-white/90
-              text-lg
-              leading-8
-            "
-          >
+          <p className="
+            mt-8
+            max-w-2xl
+            mx-auto
+            text-white/90
+            text-lg
+            leading-8
+          ">
             A boutique homestay experience in the
             heart of Uttarakhand where nature,
             comfort and calm come together.
           </p>
 
-          <div
-            className="
-              mt-10
-              flex
-              flex-wrap
-              justify-center
-              gap-4
-            "
-          >
+          <div className="
+            mt-10
+            flex
+            flex-wrap
+            justify-center
+            gap-4
+          ">
+
             <Link
               href="/booking"
               className="primary-btn"
@@ -88,9 +81,8 @@ export default function Hero() {
             <Link
               href="/rooms"
               className="
-               px-2
-               py-1
-               
+                px-6
+                p-2
                
                 border
                 border-white/30
@@ -102,6 +94,7 @@ export default function Hero() {
             >
               Explore Rooms
             </Link>
+
           </div>
 
         </div>
