@@ -5,12 +5,10 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative w-full  h-fit p-4 pb-12 lg:pb-16 ">
+    <section className="relative w-full min-h-screen overflow-hidden">
 
       {/* Background */}
-
       <div className="absolute inset-0">
-
         <Image
           src="/uploads/hero.jpg"
           alt="Calming Nook Hero"
@@ -18,44 +16,24 @@ export default function Hero() {
           priority
           className="object-cover"
         />
-
       </div>
 
       {/* Overlay */}
-
       <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
-
-      <div
-        className="
-  relative
-  z-10
-  h-full
-  flex
-  items-center
-  justify-center
-
-  pt-18
-  sm:pt-22
-  lg:pt-26
-
-  px-4
-  text-center
-  "
-      >
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-4 text-center">
 
         <div className="max-w-4xl">
 
           <p
             className="
-            uppercase
-            tracking-[8px]
-            text-white/80
-            text-shadow-2xl
-            text-3xl
-            mb-6
-            mt-[40px]
+              uppercase
+              tracking-[8px]
+              text-white/80
+              text-xl
+              sm:text-2xl
+              mb-6
             "
           >
             Welcome To Calming Nook
@@ -63,13 +41,12 @@ export default function Hero() {
 
           <h1
             className="
-            text-secondary
-            font-bold
-            leading-tight
-
-            text-3xl
-            sm:text-4xl
-            lg:text-6xl
+            text-primary
+              font-bold
+              leading-tight
+              text-4xl
+              sm:text-5xl
+              lg:text-7xl
             "
           >
             Escape Into
@@ -79,12 +56,12 @@ export default function Hero() {
 
           <p
             className="
-            mt-8
-            max-w-2xl
-            mx-auto
-            text-white/90
-            text-lg
-            leading-8
+              mt-8
+              max-w-2xl
+              mx-auto
+              text-white/90
+              text-lg
+              leading-8
             "
           >
             A boutique homestay experience in the
@@ -94,14 +71,13 @@ export default function Hero() {
 
           <div
             className="
-            mt-10
-            flex
-            flex-wrap
-            justify-center
-            gap-4
+              mt-10
+              flex
+              flex-wrap
+              justify-center
+              gap-4
             "
           >
-
             <Link
               href="/booking"
               className="primary-btn"
@@ -112,26 +88,25 @@ export default function Hero() {
             <Link
               href="/rooms"
               className="
-              px-8
-              py-4
-              rounded-full
-              border
-              border-white/30
-              text-white
-              backdrop-blur-md
-              hover:bg-white/10
-              transition-all
+               px-2
+               py-1
+               
+               
+                border
+                border-white/30
+                text-white
+                backdrop-blur-md
+                hover:bg-white/10
+                transition-all
               "
             >
               Explore Rooms
             </Link>
-
           </div>
 
         </div>
 
       </div>
-
     </section>
   );
 }

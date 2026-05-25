@@ -1,4 +1,5 @@
 @import "tailwindcss";
+*{font-family: "Ogg", serif;}
 
 :root{
   --primary:#b84639;
@@ -140,31 +141,53 @@ border:1px solid black;
 
 
 .heading-xl{
+  font-family: "Ogg", serif;
 
-font-size:
-clamp(
-2.8rem,
-8vw,
-7rem
-);
+  font-size:
+  clamp(
+    2.8rem,
+    8vw,
+    7rem
+  );
 
-font-weight:800;
+  font-weight:800;
 
-line-height:.95;
+  line-height:.95;
 }
-
 
 .heading-lg{
+  font-family: "Ogg", serif;
 
-font-size:
-clamp(
-2rem,
-5vw,
-4rem
-);
-
-font-weight:700;
+  font-size:
+  clamp(
+    2rem,
+    5vw,
+    4rem
+  );
 }
+
+.heading-md{
+  font-family: "Ogg", serif;
+
+  font-size:
+  clamp(
+    1.5rem,
+    4vw,
+    3rem
+  );
+}
+
+.heading-sm{
+  font-family: "Ogg", serif;
+
+  font-size:
+  clamp(
+    1.2rem,
+    3vw,
+    2rem
+  );
+}
+
 
 
 .text-muted{

@@ -22,7 +22,7 @@ export default function FeaturedRooms() {
 
           <h2
             className="
-            heading-lg
+            heading-md
             mt-4
             "
           >
@@ -80,7 +80,7 @@ export default function FeaturedRooms() {
               </div>
 
 
-              <div className="p-5">
+              <div className="p-5 ">
 
                 <div
                   className="
@@ -125,17 +125,18 @@ export default function FeaturedRooms() {
                 </p>
 
 
-                <button
-                  className="
-                  primary-btn
-                  mt-5
-                  text-sm
-                  px-5
-                  py-3
-                  "
-                >
-                  View Room
-                </button>
+                <div className="flex justify-center mt-5">
+  <button
+    className="
+      primary-btn
+      text-sm
+      px-5
+      py-3
+    "
+  >
+    View Room
+  </button>
+</div>
 
               </div>
 
