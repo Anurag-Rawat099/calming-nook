@@ -1,112 +1,137 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Hero(){
+export default function Hero() {
+  return (
+    <section className="relative w-full  h-fit p-4 pb-12 lg:pb-16 ">
 
-return(
+      {/* Background */}
 
-<section className="
-min-h-screen
-pt-28
-lg:pt-0
-flex
-items-center
-">
+      <div className="absolute inset-0">
 
-<div className="
-container-custom
-grid
-grid-cols-1
-lg:grid-cols-2
-gap-10
-items-center
-">
+        <Image
+          src="/uploads/hero.jpg"
+          alt="Calming Nook Hero"
+          fill
+          priority
+          className="object-cover"
+        />
 
-<div>
+      </div>
 
-<p className="
-uppercase
-tracking-[6px]
-text-[var(--primary)]
-">
+      {/* Overlay */}
 
-Boutique Homestay
+      <div className="absolute inset-0 bg-black/50" />
 
-</p>
+      {/* Content */}
 
+      <div
+        className="
+  relative
+  z-10
+  h-full
+  flex
+  items-center
+  justify-center
 
-<h1 className="
-heading-xl
-mt-5
-">
+  pt-18
+  sm:pt-22
+  lg:pt-26
 
-Escape Into Comfort & Slow Living
+  px-4
+  text-center
+  "
+      >
 
-</h1>
+        <div className="max-w-4xl">
 
+          <p
+            className="
+            uppercase
+            tracking-[8px]
+            text-white/80
+            text-shadow-2xl
+            text-3xl
+            mb-6
+            mt-[40px]
+            "
+          >
+            Welcome To Calming Nook
+          </p>
 
-<p className="
-text-muted
-mt-8
-max-w-xl
-">
+          <h1
+            className="
+            text-secondary
+            font-bold
+            leading-tight
 
-Experience heritage warmth,
-peaceful views and memorable stays.
+            text-3xl
+            sm:text-4xl
+            lg:text-6xl
+            "
+          >
+            Escape Into
+            <br />
+            Peace & Mountains
+          </h1>
 
-</p>
+          <p
+            className="
+            mt-8
+            max-w-2xl
+            mx-auto
+            text-white/90
+            text-lg
+            leading-8
+            "
+          >
+            A boutique homestay experience in the
+            heart of Uttarakhand where nature,
+            comfort and calm come together.
+          </p>
 
+          <div
+            className="
+            mt-10
+            flex
+            flex-wrap
+            justify-center
+            gap-4
+            "
+          >
 
-<div className="
-flex
-flex-wrap
-gap-4
-mt-10
-">
+            <Link
+              href="/booking"
+              className="primary-btn"
+            >
+              Book Your Stay
+            </Link>
 
-<button className="primary-btn">
+            <Link
+              href="/rooms"
+              className="
+              px-8
+              py-4
+              rounded-full
+              border
+              border-white/30
+              text-white
+              backdrop-blur-md
+              hover:bg-white/10
+              transition-all
+              "
+            >
+              Explore Rooms
+            </Link>
 
-Book Stay
+          </div>
 
-</button>
+        </div>
 
+      </div>
 
-<button className="secondary-btn">
-
-Explore
-
-</button>
-
-</div>
-
-</div>
-
-
-<div className="
-theme-card
-p-3
-">
-
-<Image
-src="/images/hero/hero.jpg"
-width={800}
-height={800}
-alt="hero"
-className="
-w-full
-h-[350px]
-sm:h-[450px]
-lg:h-[650px]
-object-cover
-rounded-[24px]
-"
-/>
-
-</div>
-
-</div>
-
-</section>
-
-)
-
+    </section>
+  );
 }

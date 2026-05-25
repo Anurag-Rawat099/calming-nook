@@ -35,7 +35,7 @@ export default function BookingForm() {
   };
 
   return (
-    <section className="py-24 lg:py-32">
+    <section className="">
 
       <div className="container-custom">
 
@@ -242,7 +242,7 @@ export default function BookingForm() {
               </label>
 
               <textarea
-                rows="5"
+                rows="3"
                 name="message"
                 onChange={handleChange}
                 placeholder="Special requests..."

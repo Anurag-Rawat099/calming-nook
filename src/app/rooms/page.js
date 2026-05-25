@@ -11,7 +11,7 @@ export default function RoomsPage() {
 
       {/* Hero */}
 
-      <section className="pt-32 pb-20">
+      <section className="pt-26">
 
         <div className="container-custom text-center">
 
@@ -19,6 +19,7 @@ export default function RoomsPage() {
           uppercase
           tracking-[6px]
           text-[var(--primary)]
+          text-3xl
           ">
 
             Our Rooms
@@ -26,7 +27,7 @@ export default function RoomsPage() {
           </p>
 
           <h1 className="
-          heading-xl
+          heading-lg
           mt-5
           ">
 

@@ -7,133 +7,168 @@ export default function Amenities() {
 
       <div className="container-custom">
 
-<div className="
-text-center
-max-w-2xl
-mx-auto
-">
+        {/* Heading */}
 
-  <p className="
-  uppercase
-  tracking-[6px]
-  text-[var(--primary)]
-  ">
+        <div
+          className="
+          text-center
+          max-w-2xl
+          mx-auto
+          "
+        >
 
-    Experiences
-
-  </p>
-
-
-  <h2 className="
-  heading-lg
-  mt-5
-  ">
-
-    Explore Beyond Your Stay
-
-  </h2>
-
-</div>
+          <p
+            className="
+            uppercase
+            tracking-[6px]
+            text-[var(--primary)]
+            text-2xl
+            "
+          >
+            Experiences
+          </p>
 
 
-<div className="
-grid
-grid-cols-1
-md:grid-cols-2
-xl:grid-cols-3
-gap-8
-mt-16
-">
+          <h2
+            className="
+            heading-lg
+            mt-5
+            "
+          >
+            Explore Beyond Your Stay
+          </h2>
 
-  {amenities.map((item)=>(
-
-    <div
-    key={item.id}
-    className="
-    theme-card
-    overflow-hidden
-    "
-    >
-
-      <div className="
-      relative
-      h-[300px]
-      ">
-
-<Image
-  src={item.image}
-  fill
-  alt={item.title}
-  className="
-  object-cover
-  "
-/>
-
-      </div>
+        </div>
 
 
-      <div className="p-6">
 
-<h3 className="
-text-2xl
-font-bold
-">
+        {/* Cards */}
 
-  {item.title}
+        <div
+          className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-3
+          xl:grid-cols-4
+          gap-6
+          mt-14
+          justify-items-center
+          "
+        >
 
-</h3>
+          {amenities.map((item) => (
+
+            <div
+              key={item.id}
+              className="
+              theme-card
+              overflow-hidden
+
+              max-w-[300px]
+              w-full
+
+              transition-all
+              duration-300
+              hover:-translate-y-2
+              "
+            >
+
+              <div
+                className="
+                relative
+                h-[190px]
+                mx-3
+                mt-3
+                rounded-[18px]
+                overflow-hidden
+                "
+              >
+
+                <Image
+                  src={item.image}
+                  fill
+                  alt={item.title}
+                  className="
+                  object-cover
+                  hover:scale-110
+                  transition
+                  duration-700
+                  "
+                />
+
+              </div>
 
 
-<div className="
-flex
-flex-wrap
-gap-3
-mt-4
-">
 
-  <span className="
-  px-4
-  py-2
-  rounded-full
-  bg-[var(--paper-dark)]
-  text-sm
-  ">
+              <div className="p-5">
 
-    {item.duration}
-
-  </span>
-
-  <span className="
-  px-4
-  py-2
-  rounded-full
-  bg-[var(--paper-dark)]
-  text-sm
-  ">
-
-    {item.level}
-
-  </span>
-
-</div>
+                <h3
+                  className="
+                  text-lg
+                  font-bold
+                  "
+                >
+                  {item.title}
+                </h3>
 
 
-<p className="
-text-muted
-mt-5
-">
 
-  {item.desc}
+                <div
+                  className="
+                  flex
+                  flex-wrap
+                  gap-2
+                  mt-3
+                  "
+                >
 
-</p>
+                  <span
+                    className="
+                    px-3
+                    py-1.5
+                    rounded-full
+                    bg-[var(--paper-dark)]
+                    text-xs
+                    "
+                  >
+                    {item.duration}
+                  </span>
 
-      </div>
 
-    </div>
+                  <span
+                    className="
+                    px-3
+                    py-1.5
+                    rounded-full
+                    bg-[var(--paper-dark)]
+                    text-xs
+                    "
+                  >
+                    {item.level}
+                  </span>
 
-  ))}
+                </div>
 
-</div>
+
+                <p
+                  className="
+                  text-sm
+                  text-muted
+                  mt-4
+                  leading-6
+                  "
+                >
+                  {item.desc}
+                </p>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
 
       </div>
 

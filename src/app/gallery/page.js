@@ -11,42 +11,45 @@ export default function GalleryPage() {
 
       {/* Hero */}
 
-      <section className="pt-32 pb-20">
+      <section className="pt-26 ">
 
-        <div className="
-        container-custom
-        text-center
-        ">
+        <div
+          className="
+          container-custom
+          text-center
+          "
+        >
 
-          <p className="
-          uppercase
-          tracking-[6px]
-          text-[var(--primary)]
-          ">
-
+          <p
+            className="
+            uppercase
+            tracking-[6px]
+            text-3xl
+            text-[var(--primary)]
+            "
+          >
             Gallery
-
           </p>
 
-          <h1 className="
-          heading-xl
-          mt-5
-          ">
-
+          <h1
+            className="
+            heading-lg
+            mt-4
+            "
+          >
             Moments At Calming Nook
-
           </h1>
 
-          <p className="
-          text-muted
-          mt-8
-          max-w-3xl
-          mx-auto
-          ">
-
+          <p
+            className="
+            text-muted
+            mt-6
+            max-w-2xl
+            mx-auto
+            "
+          >
             Explore peaceful stays,
             scenic experiences and memorable moments.
-
           </p>
 
         </div>
@@ -54,21 +57,27 @@ export default function GalleryPage() {
       </section>
 
 
-      {/* Masonry Grid */}
 
-      <section className="section pt-0">
+      {/* Gallery */}
 
-        <div className="container-custom">
+      <section className="section pt-0 ">
 
-          <div className="
-          columns-1
-          sm:columns-2
-          lg:columns-3
-          gap-6
-          space-y-6
-          ">
+        <div className="container-custom ">
 
-            {gallery.map((item)=>(
+          <div
+            className="
+            columns-1
+            sm:columns-2
+            lg:columns-3
+            xl:columns-4
+
+            gap-4
+            space-y-4
+           
+            "
+          >
+
+            {gallery.map((item) => (
 
               <div
                 key={item.id}
@@ -76,7 +85,15 @@ export default function GalleryPage() {
                 theme-card
                 overflow-hidden
                 break-inside-avoid
-                mb-6
+
+                mb-4
+                max-w-[300px]
+                max-h-[330px]
+                mx-auto
+
+                hover:-translate-y-2
+                transition-all
+                duration-300
                 "
               >
 
@@ -85,7 +102,7 @@ export default function GalleryPage() {
                   <Image
                     src={item.image}
                     width={300}
-                    height={450}
+                    height={280}
                     alt={item.title}
                     className="
                     w-full
@@ -96,15 +113,16 @@ export default function GalleryPage() {
 
                 </div>
 
-                <div className="p-5">
 
-                  <h3 className="
-                  text-xl
-                  font-bold
-                  ">
+                <div className="p-4">
 
+                  <h3
+                    className="
+                    text-center
+                    font-semibold
+                    "
+                  >
                     {item.title}
-
                   </h3>
 
                 </div>

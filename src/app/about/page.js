@@ -23,6 +23,7 @@ export default function AboutPage() {
           <p className="
           uppercase
           tracking-[6px]
+          text-3xl
           text-[var(--primary)]
           ">
 
@@ -31,7 +32,7 @@ export default function AboutPage() {
           </p>
 
           <h1 className="
-          heading-xl
+          heading-lg
           mt-5
           ">
 

@@ -13,6 +13,7 @@ export default function Testimonials() {
           uppercase
           tracking-[6px]
           text-[var(--primary)]
+          text-2xl  
           ">
 
             Guest Stories
@@ -21,7 +22,7 @@ export default function Testimonials() {
 
           <h2 className="
           heading-lg
-          mt-5
+          mt-3
           ">
 
             Memories Shared By Our Guests
@@ -54,10 +55,10 @@ export default function Testimonials() {
 
             <div
               key={item.id}
-              className="theme-card "
+              className="theme-card p-2"
             >
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center  gap-4">
 
                 <Image
                   src={item.image}

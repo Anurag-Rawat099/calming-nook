@@ -20,6 +20,7 @@ export default function ContactPage() {
           <p className="
           uppercase
           tracking-[6px]
+          text-3xl
           text-[var(--primary)]
           ">
 
@@ -28,7 +29,7 @@ export default function ContactPage() {
           </p>
 
           <h1 className="
-          heading-xl
+          heading-lg
           mt-5
           ">
 

@@ -6,7 +6,7 @@ export default function BookingCTA() {
         <div className="   absolute   -top-20   -left-20   h-52   w-52   rounded-full   bg-[var(--primary)]/10   blur-3xl   " />
         <div className="   absolute   -bottom-20   -right-20   h-52   w-52   rounded-full   bg-black/5   blur-3xl   " />
         <div className="relative z-10">
-          <p className="uppercase tracking-[6px] text-[var(--primary)]">   Reserve Your Escape </p>
+          <p className="uppercase tracking-[6px] text-[var(--primary)] text-2xl">   Reserve Your Escape </p>
           <h2 className="heading-lg mt-4">   Slow Down & Stay A Little Longer </h2>
           <p className="text-muted mt-6 max-w-2xl mx-auto">   Experience warm hospitality, scenic trails,   peaceful mornings, and memorable evenings at   Calming Nook. </p>
           <div className="flex flex-wrap justify-center gap-4 mt-10">

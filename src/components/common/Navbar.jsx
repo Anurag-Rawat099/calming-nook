@@ -26,12 +26,7 @@ return(
 
 <nav className="fixed top-0 w-full z-50 ">
 
-<div className="
-bg-white/10
-backdrop-blur-md
-border-b
-border-black/10
-">
+<div className="bg-white  border-b border-black/10">
 
 <div className="
 container-custom

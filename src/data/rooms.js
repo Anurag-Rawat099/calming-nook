@@ -5,7 +5,7 @@ id:1,
 title:"Heritage Suite",
 image:"/images/rooms/room1.jpg",
 price:"₹4,999",
-desc:"Traditional interiors with peace"
+desc:"Traditional interiors with peace and tranquility."
 },
 
 {

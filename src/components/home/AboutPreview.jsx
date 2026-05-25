@@ -12,14 +12,16 @@ export default function AboutPreview() {
       lg:grid-cols-2
       gap-16
       items-center
+      
       ">
 
         {/* Images */}
 
         <div className="
         relative
-        h-[500px]
-        sm:h-[600px]
+        h-[450px]
+        sm:h-[500px]
+        
         ">
 
 <div className="
@@ -27,17 +29,18 @@ theme-card
 absolute
 left-0
 top-0
-w-[75%]
+w-[65%]
+h-[65%]
 p-3
 ">
 
   <Image
     src="/images/about/about1.jpg"
-    width={500}
-    height={600}
+    width={300}
+    height={400}
     alt="about"
     className="
-    rounded-[24px]
+  
     h-[350px]
     sm:h-[450px]
     object-cover
@@ -52,7 +55,7 @@ theme-card
 absolute
 bottom-0
 right-0
-w-[55%]
+w-[45%]
 p-3
 ">
 
@@ -62,7 +65,6 @@ p-3
     height={400}
     alt="room"
     className="
-    rounded-[24px]
     h-[200px]
     sm:h-[260px]
     object-cover
@@ -80,8 +82,10 @@ p-3
 
 <p className="
 uppercase
+
 tracking-[6px]
 text-[var(--primary)]
+text-2xl
 ">
 
   About Calming Nook
