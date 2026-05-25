@@ -31,7 +31,7 @@ export default function Amenities() {
 
           <h2
             className="
-            heading-lg
+            heading-md
             mt-5
             "
           >

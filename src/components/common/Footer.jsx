@@ -10,7 +10,8 @@ export default function Footer() {
 
       <div className="
       container-custom
-      py-16
+      pt-16
+      pb-5
       ">
 
         <div className="

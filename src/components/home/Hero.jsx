@@ -14,6 +14,7 @@ export default function Hero() {
           alt="Calming Nook Hero"
           fill
           priority
+          suppressHydrationWarning
           className="object-cover"
         />
       </div>
@@ -22,55 +23,62 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-4 text-center">
+      <div className="relative z-10 flex min-h-screen items-center justify-center pt-15 text-center">
 
         <div className="max-w-4xl">
 
-          <p className="
-            uppercase
-            tracking-[8px]
-            text-white/80
-            text-xl
-            sm:text-2xl
-            mb-6
-          ">
+          <p
+            className="
+              uppercase
+              tracking-[8px]
+              text-white/80
+              text-xl
+              sm:text-2xl
+              mb-6
+            "
+          >
             Welcome To Calming Nook
           </p>
 
-          <h1 className="
-            text-white
-            font-bold
-            leading-tight
-            text-4xl
-            sm:text-5xl
-            lg:text-7xl
-          ">
+          <h1
+            className="
+              text-white
+              font-bold
+              leading-tight
+              text-4xl
+              sm:text-5xl
+              lg:text-6xl
+            "
+          >
             Escape Into
-            <br />
             Peace & Mountains
           </h1>
 
-          <p className="
-            mt-8
-            max-w-2xl
-            mx-auto
-            text-white/90
-            text-lg
-            leading-8
-          ">
+          <p
+            className="
+              mt-8
+              max-w-2xl
+              mx-auto
+              text-white/90
+              text-lg
+              leading-8
+            "
+          >
             A boutique homestay experience in the
             heart of Uttarakhand where nature,
+            <br />
             comfort and calm come together.
           </p>
 
-          <div className="
-            mt-10
-            flex
-            flex-wrap
-            justify-center
-            gap-4
-          ">
-
+          <div
+            className="
+              mt-10
+              flex
+              flex-wrap
+              justify-center
+              gap-4
+            "
+          >
             <Link
               href="/booking"
               className="primary-btn"
@@ -83,7 +91,6 @@ export default function Hero() {
               className="
                 px-6
                 p-2
-               
                 border
                 border-white/30
                 text-white
@@ -94,7 +101,6 @@ export default function Hero() {
             >
               Explore Rooms
             </Link>
-
           </div>
 
         </div>
