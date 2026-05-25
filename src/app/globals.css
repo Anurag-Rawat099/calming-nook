@@ -99,8 +99,6 @@ backdrop-filter:blur(10px);
 
 border:1px solid rgba(255,255,255,.2);
 
-border-radius:var(--radius);
-
 box-shadow:var(--shadow);
 
 transition:.4s;
@@ -113,13 +111,11 @@ transform:translateY(-6px);
 
 .primary-btn{
 
-padding:12px 22px;
+padding:5px 20px;
 
 background:var(--primary);
 
 color:white;
-
-border-radius:999px;
 
 font-weight:600;
 
@@ -139,7 +135,6 @@ padding:12px 22px;
 
 border:1px solid black;
 
-border-radius:999px;
 
 }
 
