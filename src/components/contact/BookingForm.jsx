@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Phone,
   Mail,
@@ -10,29 +10,22 @@ import {
 } from "lucide-react";
 
 export default function BookingForm() {
-  const [mounted, setMounted] =
-    useState(false);
-
-  const [formData, setFormData] =
-    useState({
-      name: "",
-      email: "",
-      phone: "",
-      guests: "",
-      checkin: "",
-      checkout: "",
-      message: "",
-    });
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    guests: "",
+    checkin: "",
+    checkout: "",
+    message: "",
+  });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]:
-        e.target.value,
+      [name]: value,
     }));
   };
 
@@ -41,15 +34,8 @@ export default function BookingForm() {
 
     console.log(formData);
 
-    if (mounted) {
-      alert(
-        "Booking Request Submitted"
-      );
-    }
+    alert("Booking Request Submitted");
   };
-
-  // avoid SSR/client mismatch
-  if (!mounted) return null;
 
   return (
     <section className="py-16">
@@ -95,8 +81,7 @@ export default function BookingForm() {
               leading-tight
             "
             >
-              Your peaceful
-              mountain stay awaits.
+              Your peaceful mountain stay awaits.
             </h3>
 
             <p
@@ -111,7 +96,7 @@ export default function BookingForm() {
               We’d love to help.
             </p>
 
-            <div className="mt-4 space-y-8">
+            <div className="mt-8 space-y-8">
 
               <ContactItem
                 icon={<Phone size={18}/>}
@@ -136,12 +121,12 @@ export default function BookingForm() {
           </div>
 
           {/* FORM */}
+
           <form
             onSubmit={handleSubmit}
             className="
             theme-card
             px-6
-            sm:px-6
             md:px-8
             lg:px-10
             xl:px-12
@@ -163,32 +148,37 @@ export default function BookingForm() {
 
             </div>
 
-            <div className="grid md:grid-cols-2 gap-2">
+            <div className="grid md:grid-cols-2 gap-4">
 
               <Field
                 label="Full Name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                required
               />
 
               <Field
                 label="Phone Number"
+                type="tel"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
+                required
               />
 
             </div>
 
             <Field
               label="Email Address"
+              type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
+              required
             />
 
-            <div className="grid md:grid-cols-3 gap-2">
+            <div className="grid md:grid-cols-3 gap-4">
 
               <DateField
                 label="Check In"
@@ -254,19 +244,15 @@ export default function BookingForm() {
           </form>
 
         </div>
-
       </div>
     </section>
   );
 }
 
-function ContactItem({
-  icon,
-  title,
-  value,
-}) {
+function ContactItem({ icon, title, value }) {
   return (
     <div className="flex gap-4">
+
       <div className="w-11 h-11 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center">
         {icon}
       </div>
@@ -280,6 +266,7 @@ function ContactItem({
           {value}
         </h4>
       </div>
+
     </div>
   );
 }
@@ -290,6 +277,8 @@ function Field({
   value,
   icon,
   onChange,
+  type = "text",
+  required = false,
 }) {
   return (
     <div>
@@ -307,11 +296,12 @@ function Field({
         )}
 
         <input
-          type="text"
+          type={type}
           name={name}
           value={value}
+          required={required}
           onChange={onChange}
-          className={`w-full h-14 rounded-xl border border-black/10 bg-white/40 px-5 ${icon ? "pl-11" : ""}`}
+          className={`w-full h-14 rounded-xl border border-black/10 bg-white/40 px-5 focus:outline-none ${icon ? "pl-11" : ""}`}
         />
 
       </div>
@@ -345,7 +335,17 @@ function DateField({
           name={name}
           value={value}
           onChange={onChange}
-          className="w-full h-14 rounded-xl border border-black/10 bg-white/40 pl-11 pr-4"
+          className="
+          w-full
+          h-14
+          rounded-xl
+          border
+          border-black/10
+          bg-white/40
+          pl-11
+          pr-4
+          focus:outline-none
+          "
         />
 
       </div>
