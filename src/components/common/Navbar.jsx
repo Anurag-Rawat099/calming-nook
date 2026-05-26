@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import BookingModal from "../home/BookingModel";
+import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -42,19 +43,34 @@ export default function Navbar() {
             "
           >
             {/* Logo */}
-            <Link href="/">
-              <h1
-                className="
-                  text-xl
-                  sm:text-2xl
-                  font-bold
-                  tracking-[4px]
-                  text-[var(--primary)]
-                "
-              >
-                CALMING NOOK
-              </h1>
-            </Link>
+           <Link
+  href="/"
+  className="
+    flex
+    items-center
+    gap-3
+  "
+>
+  <Image
+    src="/images/logo.png"
+    alt="Calming Nook Logo"
+    width={45}
+    height={45}
+    className="object-contain"
+  />
+
+  <h1
+    className="
+      text-xl
+      sm:text-2xl
+      font-bold
+      tracking-[4px]
+      text-[var(--primary)]
+    "
+  >
+    CALMING NOOK
+  </h1>
+</Link>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex gap-8 items-center">

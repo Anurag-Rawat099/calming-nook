@@ -19,7 +19,7 @@ const menuItems = [
   },
   {
     name: "Rooms",
-    href: "/admin/rooms",
+    href: "/admin/room",
     icon: BedDouble,
   },
   {
