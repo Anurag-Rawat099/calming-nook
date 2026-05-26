@@ -11,8 +11,7 @@ export default function AboutPage() {
       {/* Hero */}
 
       <section className="
-      pt-32
-      pb-20
+      pt-22
       ">
 
         <div className="
@@ -33,7 +32,7 @@ export default function AboutPage() {
 
           <h1 className="
           heading-lg
-          mt-5
+          mt-2
           ">
 
             More Than A Stay,
@@ -43,7 +42,7 @@ export default function AboutPage() {
 
           <p className="
           text-muted
-          mt-8
+          mt-2
           max-w-3xl
           mx-auto
           ">
@@ -77,11 +76,10 @@ export default function AboutPage() {
 
             <Image
               src="/images/about/about1.jpg"
-              width={700}
-              height={700}
+              width={500}
+              height={500}
               alt="about"
               className="
-              rounded-[24px]
               h-[350px]
               sm:h-[500px]
               object-cover

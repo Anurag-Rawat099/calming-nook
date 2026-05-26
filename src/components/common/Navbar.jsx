@@ -1,15 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import BookingModal from "../home/BookingModel";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [openBooking, setOpenBooking] = useState(false);
 
-  const [openBooking, setOpenBooking] =
-    useState(false);
+  // Prevent SSR/client mismatch
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navItems = [
     { title: "Home", link: "/" },
@@ -19,32 +24,33 @@ export default function Navbar() {
     { title: "Contact", link: "/contact" },
   ];
 
+  if (!mounted) return null;
+
   return (
     <>
       <nav className="fixed top-0 w-full z-50">
-
         <div className="bg-white border-b border-black/10">
-
           <div
             className="
-            container
-            mx-auto
-            px-4
-            h-16
-            flex
-            items-center
-            justify-between
-          "
+              container
+              mx-auto
+              px-4
+              h-16
+              flex
+              items-center
+              justify-between
+            "
           >
+            {/* Logo */}
             <Link href="/">
               <h1
                 className="
-                text-xl
-                sm:text-2xl
-                font-bold
-                tracking-[4px]
-                text-[var(--primary)]
-              "
+                  text-xl
+                  sm:text-2xl
+                  font-bold
+                  tracking-[4px]
+                  text-[var(--primary)]
+                "
               >
                 CALMING NOOK
               </h1>
@@ -54,8 +60,8 @@ export default function Navbar() {
             <div className="hidden md:flex gap-8 items-center">
               {navItems.map((item) => (
                 <Link
-                  href={item.link}
                   key={item.title}
+                  href={item.link}
                   className="
                     duration-300
                     hover:text-[var(--primary)]
@@ -72,9 +78,7 @@ export default function Navbar() {
 
               {/* Desktop Button */}
               <button
-                onClick={() =>
-                  setOpenBooking(true)
-                }
+                onClick={() => setOpenBooking(true)}
                 className="hidden md:block primary-btn"
               >
                 Book Stay
@@ -83,11 +87,9 @@ export default function Navbar() {
               {/* Mobile Menu Button */}
               <button
                 className="md:hidden"
-                onClick={() =>
-                  setOpen(!open)
-                }
+                onClick={() => setOpen((prev) => !prev)}
               >
-                {open ? <X /> : <Menu />}
+                {open ? <X size={28} /> : <Menu size={28} />}
               </button>
 
             </div>
@@ -98,36 +100,30 @@ export default function Navbar() {
         {open && (
           <div
             className="
-            md:hidden
-            theme-card
-            m-4
-            p-5
-            space-y-5
-          "
+              md:hidden
+              theme-card
+              m-4
+              p-5
+              space-y-5
+            "
           >
             {navItems.map((item) => (
               <Link
-                href={item.link}
                 key={item.title}
+                href={item.link}
                 className="block"
-                onClick={() =>
-                  setOpen(false)
-                }
+                onClick={() => setOpen(false)}
               >
                 {item.title}
               </Link>
             ))}
 
-            {/* Mobile Button */}
             <button
               onClick={() => {
                 setOpenBooking(true);
                 setOpen(false);
               }}
-              className="
-              primary-btn
-              w-full
-            "
+              className="primary-btn w-full"
             >
               Book Stay
             </button>
@@ -135,13 +131,13 @@ export default function Navbar() {
         )}
       </nav>
 
-      {/* Booking Modal */}
-      <BookingModal
-        open={openBooking}
-        onClose={() =>
-          setOpenBooking(false)
-        }
-      />
+      {/* Modal only after client mounted */}
+      {mounted && (
+        <BookingModal
+          open={openBooking}
+          onClose={() => setOpenBooking(false)}
+        />
+      )}
     </>
   );
 }
