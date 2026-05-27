@@ -36,7 +36,7 @@ export default function Navbar() {
             >
 
               <Image
-                src="/images/logo/logo.png"
+                src="/images/logo.png"
                 alt="Calming Nook"
                 width={50}
                 height={50}
@@ -139,6 +139,7 @@ export default function Navbar() {
             >
               Book Stay
             </button>
+            
 
           </div>
 
