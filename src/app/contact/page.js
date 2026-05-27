@@ -9,7 +9,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-20">
+      <section className="pt-22 pb-10">
 
         <div
           className="
@@ -35,7 +35,7 @@ export default function ContactPage() {
           <h1
             className="
             heading-lg
-            mt-5
+            
           "
           >
             Plan Your Stay
@@ -44,7 +44,6 @@ export default function ContactPage() {
           <p
             className="
             text-gray-500
-            mt-8
             max-w-3xl
             mx-auto
             leading-8

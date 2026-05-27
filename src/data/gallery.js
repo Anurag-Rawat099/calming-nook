@@ -1,51 +1,53 @@
-const gallery = [
-  {
-    id:1,
-    image:"/images/gallery/g1.jpg",
-    title:"Mountain Morning"
-  },
+const gallery=[
 
-  {
-    id:2,
-    image:"/images/gallery/g2.jpg",
-    title:"Cozy Heritage Room"
-  },
+{
+id:1,
+title:"Sunrise Mountain View",
+category:"Nature",
+image:"/uploads/gallery/gallery1.jpg",
+desc:"Golden sunrise moments from our mountain stay."
+},
 
-  {
-    id:3,
-    image:"/images/gallery/g3.jpg",
-    title:"Camping Nights"
-  },
+{
+id:2,
+title:"Luxury Wooden Room",
+category:"Rooms",
+image:"/uploads/gallery/gallery2.jpg",
+desc:"Warm interiors with peaceful mountain views."
+},
 
-  {
-    id:4,
-    image:"/images/gallery/g4.jpg",
-    title:"Riverside Walk"
-  },
+{
+id:3,
+title:"Camping Night",
+category:"Activities",
+image:"/uploads/gallery/gallery3.jpg",
+desc:"Bonfire evenings under stars."
+},
 
-  {
-    id:5,
-    image:"/images/gallery/g5.jpg",
-    title:"Temple Trails"
-  },
+{
+id:4,
+title:"Temple Hike",
+category:"Adventure",
+image:"/uploads/gallery/gallery4.jpg",
+desc:"Scenic trails through forests."
+},
 
-  {
-    id:6,
-    image:"/images/gallery/g6.jpg",
-    title:"Valley Views"
-  },
+{
+id:5,
+title:"Riverside Walk",
+category:"Nature",
+image:"/uploads/gallery/gallery5.jpg",
+desc:"Relax beside calm flowing rivers."
+},
 
-  {
-    id:7,
-    image:"/images/gallery/g7.jpg",
-    title:"Bonfire Evening"
-  },
+{
+id:6,
+title:"Village Experience",
+category:"Culture",
+image:"/uploads/gallery/gallery6.jpg",
+desc:"Discover local traditions and landscapes."
+}
 
-  {
-    id:8,
-    image:"/images/gallery/g8.jpg",
-    title:"Forest Escape"
-  }
-];
+]
 
 export default gallery;

@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mt-10 border-t border-black/10">
-      <div className="container-custom pt-5 pb-5">
+    <footer className="mt-6 border-t border-black/10">
+      <div className="container-custom pt-2 pb-2">
 
-        <div className="grid lg:grid-cols-4 gap-8">
+        <div className="grid lg:grid-cols-4 gap-4">
 
           {/* LEFT : Branding (1 col) */}
           <div className="lg:col-span-1">
@@ -128,8 +128,8 @@ export default function Footer() {
           className="
           border-t
           border-black/10
-          mt-12
-          pt-6
+          mt-2
+          pt-2
           text-center
           text-muted
         "
