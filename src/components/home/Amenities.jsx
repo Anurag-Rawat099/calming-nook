@@ -3,7 +3,8 @@ import amenities from "@/data/amenities";
 
 export default function Amenities() {
   return (
-    <section className="section">
+    <section className="section overflow-hidden">
+
       <div className="container-custom">
 
         {/* Heading */}
@@ -20,55 +21,169 @@ export default function Amenities() {
 
         </div>
 
-        {/* Cards */}
+        {/* Expanding Gallery */}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-14 justify-items-center">
+        <div
+          className="
+          flex
+          flex-col
+          lg:flex-row
+          gap-4
+          mt-16
+          h-auto
+          lg:h-[500px]
+          "
+        >
 
           {amenities.map((item) => (
 
             <div
               key={item.id}
-              className="theme-card overflow-hidden max-w-[300px] w-full transition-all duration-300 hover:-translate-y-2"
+              className="
+              group
+              relative
+              flex-1
+              overflow-hidden
+              transition-all
+              duration-700
+              ease-in-out
+              hover:flex-[4]
+              min-h-[300px]
+              lg:min-h-full
+              cursor-pointer
+              "
             >
 
               {/* Image */}
 
-              <div className="relative h-[190px] mx-3 mt-3 rounded-[18px] overflow-hidden">
+              <Image
+                src={item.image}
+                fill
+                alt={item.title}
+                className="
+                object-cover
+                transition-transform
+                duration-700
+                ease-in-out
+                group-hover:scale-110
+                "
+              />
 
-                <Image
-                  src={item.image}
-                  fill
-                  alt={item.title}
-                  className="object-cover hover:scale-110 transition duration-700"
-                />
+              {/* Dark Overlay */}
 
-              </div>
+              <div
+                className="
+                absolute
+                inset-0
+                bg-gradient-to-t
+                from-black/80
+                via-black/30
+                to-black/10
+                "
+              />
 
-              {/* Content */}
+              {/* Default Content */}
 
-              <div className="p-5">
+              <div
+                className="
+                absolute
+                bottom-7
+                left-6
+                z-10
+                transition-all
+                duration-500
+                group-hover:opacity-0
+                group-hover:translate-y-8
+                "
+              >
 
-                <h3 className="text-lg font-bold">
+                <p className="text-white/70 text-xs uppercase tracking-[4px]">
+                  {item.duration}
+                </p>
+
+                <h3 className="text-white text-2xl font-bold mt-2">
                   {item.title}
                 </h3>
 
-                {/* Tags */}
+              </div>
 
-                <div className="flex flex-wrap gap-2 mt-3">
+              {/* Hover Content */}
 
-                  <span className="px-3 py-1.5 rounded-full bg-[var(--paper-dark)] text-xs">
+              <div
+                className="
+                absolute
+                inset-0
+                z-20
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-center
+                px-6
+                opacity-0
+                translate-y-10
+                transition-all
+                duration-700
+                group-hover:opacity-100
+                group-hover:translate-y-0
+                "
+              >
+
+                <span
+                  className="
+                  px-4
+                  py-2
+                  rounded-full
+                  bg-white/15
+                  backdrop-blur-md
+                  text-white
+                  text-xs
+                  tracking-[3px]
+                  uppercase
+                  "
+                >
+                  {item.level}
+                </span>
+
+                <h3 className="text-white text-4xl font-bold mt-5">
+                  {item.title}
+                </h3>
+
+                <p className="text-white/80 text-sm leading-7 mt-5 max-w-[320px]">
+                  {item.desc}
+                </p>
+
+                <div className="flex gap-3 mt-6">
+
+                  <span
+                    className="
+                    px-4
+                    py-2
+                    rounded-full
+                    bg-white/10
+                    backdrop-blur-md
+                    text-white
+                    text-xs
+                    "
+                  >
                     {item.duration}
                   </span>
 
-                  <span className="px-3 py-1.5 rounded-full bg-[var(--paper-dark)] text-xs">
+                  <span
+                    className="
+                    px-4
+                    py-2
+                    rounded-full
+                    bg-white/10
+                    backdrop-blur-md
+                    text-white
+                    text-xs
+                    "
+                  >
                     {item.level}
                   </span>
 
                 </div>
-
-                <p className="text-sm text-muted mt-4 leading-6">
-                  {item.desc}
-                </p>
 
               </div>
 
@@ -79,6 +194,7 @@ export default function Amenities() {
         </div>
 
       </div>
+
     </section>
   );
 }
