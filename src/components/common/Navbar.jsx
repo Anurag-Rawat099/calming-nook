@@ -13,9 +13,7 @@ export default function Navbar() {
   const navItems = [
     { title: "Home", link: "/" },
     { title: "About", link: "/about" },
-    { title: "Rooms", link: "/rooms" },
     { title:"Experiences", link:"/experiences" },
-    { title: "Gallery", link: "/gallery" },
     { title: "Contact", link: "/contact" },
   ];
 

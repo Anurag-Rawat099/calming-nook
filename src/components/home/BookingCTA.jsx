@@ -8,82 +8,29 @@ export default function BookingCTA() {
 
       <div className="container-custom">
 
-        <div
-          className="
-          relative
-          overflow-hidden
-          theme-card
-
-          p-8
-          sm:p-10
-          lg:p-16
-
-          text-center
-          rounded-[32px]
-          "
-        >
+        <div className="relative overflow-hidden theme-card p-8 sm:p-10 lg:p-16 text-center rounded-4xl">
 
           {/* Background Glow */}
 
-          <div
-            className="
-            absolute
-            -top-20
-            -left-20
-            h-52
-            w-52
-            rounded-full
-            bg-[var(--primary)]/10
-            blur-3xl
-            "
-          />
+          <div className="absolute -top-20 -left-20 h-52 w-52 rounded-full bg-(--primary)/10 blur-3xl" />
 
-          <div
-            className="
-            absolute
-            -bottom-20
-            -right-20
-            h-52
-            w-52
-            rounded-full
-            bg-black/5
-            blur-3xl
-            "
-          />
+          <div className="absolute -bottom-20 -right-20 h-52 w-52 rounded-full bg-black/5 blur-3xl" />
 
 
 
           <div className="relative z-10 max-w-3xl mx-auto">
 
-            <p
-              className="
-              uppercase
-              tracking-[6px]
-              text-[var(--primary)]
-              text-sm
-              "
-            >
+            <p className="uppercase tracking-[6px] text-(--primary) text-sm">
               Reserve Your Escape
             </p>
 
 
-            <h2
-              className="
-              heading-lg
-              mt-5
-              "
-            >
+            <h2 className="heading-lg mt-5">
               Slow Down & Stay A Little Longer
             </h2>
 
 
-            <p
-              className="
-              text-muted
-              mt-6
-              leading-8
-              "
-            >
+            <p className="text-muted mt-6 leading-8">
               Experience warm hospitality,
               scenic trails, peaceful mornings,
               and memorable evenings at
@@ -92,15 +39,7 @@ export default function BookingCTA() {
 
 
 
-            <div
-              className="
-              flex
-              flex-wrap
-              justify-center
-              gap-4
-              mt-10
-              "
-            >
+            <div className="flex flex-wrap justify-center gap-4 mt-10">
 
               <Link
                 href="/booking"

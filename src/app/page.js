@@ -6,7 +6,7 @@ import Navbar from "@/components/common/Navbar";
 import AboutPreview from "@/components/home/AboutPreview";
 import Amenities from "@/components/home/Amenities";
 import BookingCTA from "@/components/home/BookingCTA";
-import FeaturedRooms from "@/components/home/FeaturedRooms";
+
 import Hero from "@/components/home/Hero";
 import Testimonials from "@/components/home/Testimonials";
 
@@ -19,7 +19,7 @@ export default function Home() {
 
       <AboutPreview />
 
-      <FeaturedRooms />
+   
 
       <Amenities />
 

@@ -9,7 +9,7 @@ export default function Hero() {
 
       {/* Background */}
       <Image
-        src="/uploads/hero.jpg"
+        src="/images/hero/hero.png"
         alt="Calming Nook Hero"
         fill
         priority
@@ -28,9 +28,9 @@ export default function Hero() {
             Welcome To Calming Nook
           </p>
 
-          <h1 className="text-primary font-bold leading-tight text-4xl sm:text-5xl lg:text-7xl">
+          <h1 className="text-yellow-300 font-bold leading-tight text-2xl sm:text-3xl lg:text-6xl">
             Escape Into
-            <br />
+          
             Peace & Mountains
           </h1>
 
@@ -50,7 +50,7 @@ export default function Hero() {
 
             <Link
               href="/rooms"
-              className="px-7 py-3 border border-white/30 text-white backdrop-blur-md hover:bg-white/10 transition-all"
+              className="px-7 py-1.5 border border-white/30 text-white backdrop-blur-md hover:bg-white/10 transition-all"
             >
               Explore Rooms
             </Link>

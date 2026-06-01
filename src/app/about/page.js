@@ -72,16 +72,16 @@ export default function AboutPage() {
         items-center
         ">
 
-          <div className="theme-card p-3">
+          <div className="theme-card ">
 
             <Image
-              src="/images/about/about1.jpg"
-              width={500}
-              height={500}
+              src="/images/about/aboutpreview.png"
+              width={400}
+              height={400}
               alt="about"
               className="
               h-[350px]
-              sm:h-[500px]
+              sm:h-[400px]
               object-cover
               w-full
               "
@@ -93,7 +93,7 @@ export default function AboutPage() {
           <div>
 
             <h2 className="
-            heading-lg
+            heading-md
             ">
 
               Inspired By Slow Living

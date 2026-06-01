@@ -11,11 +11,11 @@ export default function AboutPreview() {
           
           {/* Main Image */}
 
-          <div className="theme-card absolute left-0 top-0 w-[65%] p-3">
+          <div className="theme-card absolute left-0 top-0 w-[65%] ">
             <Image
-              src="/images/about/about1.jpg"
+              src="/images/about/aboutpreview.png"
               width={500}
-              height={600}
+              height={500}
               alt="About Calming Nook"
               className="w-full h-[320px] sm:h-[450px] object-cover"
               priority
@@ -24,9 +24,9 @@ export default function AboutPreview() {
 
           {/* Small Image */}
 
-          <div className="theme-card absolute bottom-0 right-0 w-[45%] p-3">
+          <div className="theme-card absolute bottom-0 right-0 w-[45%]">
             <Image
-              src="/images/about/about2.jpg"
+              src="/images/about/aboutpreview2.png"
               width={400}
               height={400}
               alt="Room Interior"
@@ -38,7 +38,7 @@ export default function AboutPreview() {
         {/* Content */}
 
         <div>
-          <p className="uppercase tracking-[6px] text-[var(--primary)] text-sm">
+          <p className="uppercase tracking-[6px] text-(--primary) text-sm">
             About Calming Nook
           </p>
 
@@ -59,7 +59,7 @@ export default function AboutPreview() {
           <div className="grid grid-cols-2 gap-5 mt-10">
             
             <div className="theme-card p-6 text-center">
-              <h3 className="text-3xl font-bold text-[var(--primary)]">
+              <h3 className="text-3xl font-bold text-(--primary)">
                 15+
               </h3>
 
@@ -69,7 +69,7 @@ export default function AboutPreview() {
             </div>
 
             <div className="theme-card p-6 text-center">
-              <h3 className="text-3xl font-bold text-[var(--primary)]">
+              <h3 className="text-3xl font-bold text-(--primary)">
                 500+
               </h3>
 
