@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-[60vh] w-full overflow-hidden sm:h-[100vh]">
 
       {/* Background */}
       <Image
@@ -28,7 +28,7 @@ export default function Hero() {
             Welcome To Calming Nook
           </p>
 
-          <h1 className="text-yellow-300 font-bold leading-tight text-2xl sm:text-3xl lg:text-6xl">
+          <h1 className="text-yellow-300/80 font-bold leading-tight text-2xl sm:text-3xl lg:text-6xl">
             Escape Into
           
             Peace & Mountains
@@ -41,18 +41,12 @@ export default function Hero() {
 
           <div className="mt-10 flex flex-wrap justify-center gap-4">
 
+           
             <Link
-              href="/booking"
-              className="primary-btn"
+              href="/contact"
+              className="px-7 py-1.5 border border-white/50 text-black bg-[var(--primary)] backdrop-blur-md hover:text-white hover:bg-white/10 transition-all"
             >
               Book Your Stay
-            </Link>
-
-            <Link
-              href="/rooms"
-              className="px-7 py-1.5 border border-white/30 text-white backdrop-blur-md hover:bg-white/10 transition-all"
-            >
-              Explore Rooms
             </Link>
 
           </div>

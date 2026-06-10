@@ -9,7 +9,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-22 pb-10">
+      <section className="pt-22 ">
 
         <div
           className="
@@ -24,8 +24,8 @@ export default function ContactPage() {
             className="
             uppercase
             tracking-[6px]
-            text-2xl
-            sm:text-3xl
+            text-md
+            sm:text-md
             text-[var(--primary)]
           "
           >
@@ -34,7 +34,7 @@ export default function ContactPage() {
 
           <h1
             className="
-            heading-lg
+            heading-sm
             
           "
           >

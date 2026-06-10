@@ -7,6 +7,7 @@ import {
   MapPin,
   CalendarDays,
   Users,
+  BedDouble,
 } from "lucide-react";
 
 export default function BookingForm() {
@@ -14,6 +15,7 @@ export default function BookingForm() {
     name: "",
     email: "",
     phone: "",
+    roomType: "",
     guests: "",
     checkin: "",
     checkout: "",
@@ -32,26 +34,77 @@ export default function BookingForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    if (
+      !formData.name ||
+      !formData.phone ||
+      !formData.checkin ||
+      !formData.checkout
+    ) {
+      alert("Please fill all required fields.");
+      return;
+    }
 
-    alert("Booking Request Submitted");
+    const message = `
+🏡 CALMING NOOK BOOKING REQUEST
+
+━━━━━━━━━━━━━━━
+
+👤 Guest Details
+
+Name: ${formData.name}
+Phone: ${formData.phone}
+Email: ${formData.email}
+
+━━━━━━━━━━━━━━━
+
+🏠 Room Details
+
+Room Type: ${formData.roomType || "Not Selected"}
+Guests: ${formData.guests}
+
+━━━━━━━━━━━━━━━
+
+📅 Stay Details
+
+Check In: ${formData.checkin}
+Check Out: ${formData.checkout}
+
+━━━━━━━━━━━━━━━
+
+📝 Special Requests
+
+${formData.message || "None"}
+
+━━━━━━━━━━━━━━━
+
+Sent from Calming Nook Website
+`;
+
+    const whatsappNumber = "918171325155";
+
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
     <section className="py-16">
-      <div className="container mx-auto px-4">
+      <div className="container-custom">
 
         <div
           className="
           grid
-          lg:grid-cols-[420px_1fr]
-          gap-10
-          xl:gap-20
+          lg:grid-cols-[380px_1fr]
+          gap-8
+          xl:gap-16
           items-start
         "
         >
 
-          {/* LEFT */}
+          {/* LEFT INFO */}
+
           <div
             className="
             theme-card
@@ -75,9 +128,9 @@ export default function BookingForm() {
 
             <h3
               className="
-              text-3xl
+              text-2xl
               font-semibold
-              mt-4
+              mt-2
               leading-tight
             "
             >
@@ -86,32 +139,31 @@ export default function BookingForm() {
 
             <p
               className="
-              text-gray-500
-              mt-6
-              leading-8
+              text-muted
+              mt-3
+              leading-7
             "
             >
-              Questions about rooms,
-              activities or bookings?
-              We’d love to help.
+              Questions about rooms, activities,
+              or bookings? We'd love to help.
             </p>
 
-            <div className="mt-8 space-y-8">
+            <div className="mt-8 space-y-5">
 
               <ContactItem
-                icon={<Phone size={18}/>}
+                icon={<Phone size={18} />}
                 title="Phone"
-                value="+91 XXXXX XXXXX"
+                value="+91 81713 25155"
               />
 
               <ContactItem
-                icon={<Mail size={18}/>}
+                icon={<Mail size={18} />}
                 title="Email"
                 value="hello@calmingnook.com"
               />
 
               <ContactItem
-                icon={<MapPin size={18}/>}
+                icon={<MapPin size={18} />}
                 title="Location"
                 value="Uttarakhand, India"
               />
@@ -120,19 +172,16 @@ export default function BookingForm() {
 
           </div>
 
-          {/* FORM */}
+          {/* BOOKING FORM */}
 
           <form
             onSubmit={handleSubmit}
             className="
             theme-card
-            px-6
-            md:px-8
-            lg:px-10
-            xl:px-12
-            py-6
-            lg:py-10
-            space-y-4
+            p-6
+            md:p-8
+            lg:p-10
+            space-y-5
           "
           >
 
@@ -142,8 +191,9 @@ export default function BookingForm() {
                 Booking Request
               </h3>
 
-              <p className="text-gray-500 mt-2">
-                Fill out the details below.
+              <p className="text-muted mt-2">
+                Fill out the details below and we'll
+                connect with you on WhatsApp.
               </p>
 
             </div>
@@ -175,16 +225,79 @@ export default function BookingForm() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              required
             />
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
+
+              <div>
+
+                <label className="text-sm block mb-3 font-medium">
+                  Room Type
+                </label>
+
+                <div className="relative">
+
+                  <BedDouble
+                    size={18}
+                    className="absolute left-4 top-5 text-gray-400"
+                  />
+
+                  <select
+                    name="roomType"
+                    value={formData.roomType}
+                    onChange={handleChange}
+                    className="
+                    w-full
+                    h-14
+                    rounded-xl
+                    border
+                    border-black/10
+                    bg-white/40
+                    pl-11
+                    pr-4
+                    outline-none
+                  "
+                  >
+                    <option value="">
+                      Select Room
+                    </option>
+
+                    <option>
+                      Deluxe Room
+                    </option>
+
+                    <option>
+                      Family Suite
+                    </option>
+
+                    <option>
+                      Mountain View Room
+                    </option>
+
+                  </select>
+
+                </div>
+
+              </div>
+
+              <Field
+                label="Guests"
+                icon={<Users size={18} />}
+                name="guests"
+                value={formData.guests}
+                onChange={handleChange}
+              />
+
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4">
 
               <DateField
                 label="Check In"
                 name="checkin"
                 value={formData.checkin}
                 onChange={handleChange}
+                required
               />
 
               <DateField
@@ -192,14 +305,7 @@ export default function BookingForm() {
                 name="checkout"
                 value={formData.checkout}
                 onChange={handleChange}
-              />
-
-              <Field
-                label="Guests"
-                icon={<Users size={18}/>}
-                name="guests"
-                value={formData.guests}
-                onChange={handleChange}
+                required
               />
 
             </div>
@@ -211,20 +317,20 @@ export default function BookingForm() {
               </label>
 
               <textarea
-                rows={3}
+                rows={4}
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Special requests..."
                 className="
                 w-full
-                rounded-2xl
+                rounded-xl
                 border
                 border-black/10
                 bg-white/40
-                p-5
-                outline-none
+                p-4
                 resize-none
+                outline-none
               "
               />
 
@@ -232,11 +338,7 @@ export default function BookingForm() {
 
             <button
               type="submit"
-              className="
-              primary-btn
-              w-full
-              py-5
-            "
+              className="primary-btn w-full"
             >
               Send Booking Request
             </button>
@@ -244,27 +346,45 @@ export default function BookingForm() {
           </form>
 
         </div>
+
       </div>
     </section>
   );
 }
 
-function ContactItem({ icon, title, value }) {
+function ContactItem({
+  icon,
+  title,
+  value,
+}) {
   return (
     <div className="flex gap-4">
 
-      <div className="w-11 h-11 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center">
+      <div
+        className="
+        w-11
+        h-11
+        rounded-full
+        bg-[var(--primary)]/10
+        text-[var(--primary)]
+        flex
+        items-center
+        justify-center
+      "
+      >
         {icon}
       </div>
 
       <div>
-        <p className="text-sm text-gray-500">
+
+        <p className="text-sm text-muted">
           {title}
         </p>
 
-        <h4 className="mt-1 font-medium">
+        <h4 className="font-medium mt-1">
           {value}
         </h4>
+
       </div>
 
     </div>
@@ -301,7 +421,17 @@ function Field({
           value={value}
           required={required}
           onChange={onChange}
-          className={`w-full h-14 rounded-xl border border-black/10 bg-white/40 px-5 focus:outline-none ${icon ? "pl-11" : ""}`}
+          className={`
+            w-full
+            h-14
+            rounded-xl
+            border
+            border-black/10
+            bg-white/40
+            px-5
+            outline-none
+            ${icon ? "pl-11" : ""}
+          `}
         />
 
       </div>
@@ -315,6 +445,7 @@ function DateField({
   name,
   value,
   onChange,
+  required = false,
 }) {
   return (
     <div>
@@ -334,6 +465,7 @@ function DateField({
           type="date"
           name={name}
           value={value}
+          required={required}
           onChange={onChange}
           className="
           w-full
@@ -344,7 +476,7 @@ function DateField({
           bg-white/40
           pl-11
           pr-4
-          focus:outline-none
+          outline-none
           "
         />
 

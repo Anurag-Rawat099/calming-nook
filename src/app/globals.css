@@ -83,9 +83,25 @@ body{
   box-shadow:var(--shadow);
 
   transition:.4s;
+}  
+
+.theme-card-2{
+ 
+  backdrop-filter:blur(10px);
+  background:#b84639fb;
+  border:1px solid rgba(255, 255, 255,);
+
+  box-shadow:var(--shadow);
+
+  transition:.4s;
 }
 
 .theme-card:hover{
+  transform:translateY(-6px);
+}
+
+
+.theme-card-2:hover{
   transform:translateY(-6px);
 }
 

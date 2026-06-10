@@ -4,14 +4,14 @@ export default function AboutPreview() {
   return (
     <section className="section">
       <div className="container-custom grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        
+
         {/* Images */}
 
-        <div className="relative h-[450px] sm:h-[550px]">
-          
+        <div className="relative h-[400px] sm:h-[550px]">
+
           {/* Main Image */}
 
-          <div className="theme-card absolute left-0 top-0 w-[65%] ">
+          <div className="theme-card absolute left-0 top-0 w-[80%] ">
             <Image
               src="/images/about/aboutpreview.png"
               width={500}
@@ -38,38 +38,53 @@ export default function AboutPreview() {
         {/* Content */}
 
         <div>
-          <p className="uppercase tracking-[6px] text-(--primary) text-sm">
+          <p className="uppercase text-center tracking-[6px] text-(--primary) text-sm sm:text-left">
             About Calming Nook
           </p>
 
-          <h2 className="heading-lg mt-5">
+          <h2 className="heading-sm mt-5 text-center sm:text-left">
             A Heritage Stay Crafted For Peace
           </h2>
 
-          <p className="text-muted mt-8 leading-relaxed">
-            Hidden away from the noise of city life,
-            Calming Nook blends peaceful living,
-            warm hospitality, and heritage-inspired
-            interiors to create a slow and soulful
-            mountain stay experience.
+          <p
+            className="
+    text-muted
+    mt-6
+    leading-8
+    "
+          >
+            Nestled amidst the serene hills of Uttarakhand,
+            Calming Nook is more than just a place to stay—
+            it is a destination where nature, comfort, and
+            authentic mountain hospitality come together.
+            Surrounded by lush forests, scenic valleys, and
+            breathtaking Himalayan views, our homestay offers
+            travelers an opportunity to slow down, unwind,
+            and reconnect with what truly matters.
           </p>
+
+          <p
+            className=" text-muted mt-4 leading-8 " >Whether you're looking for a peaceful retreat,a family getaway, a romantic escape, or anadventure-filled vacation, Calming Nook providesthe perfect balance of relaxation and exploration.Wake up to birdsong, enjoy fresh mountain air,experience local culture, and create memoriesthat stay with you long after your journey ends. </p>
+
+
+
 
           {/* Stats */}
 
           <div className="grid grid-cols-2 gap-5 mt-10">
-            
+
             <div className="theme-card p-6 text-center">
-              <h3 className="text-3xl font-bold text-(--primary)">
-                15+
+              <h3 className="text-2xl font-bold text-(--primary)">
+                10+
               </h3>
 
               <p className="mt-2 text-muted">
-                Luxury Rooms
+                Local Experiences
               </p>
             </div>
 
             <div className="theme-card p-6 text-center">
-              <h3 className="text-3xl font-bold text-(--primary)">
+              <h3 className="text-2xl font-bold text-(--primary)">
                 500+
               </h3>
 
