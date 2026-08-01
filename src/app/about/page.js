@@ -76,7 +76,7 @@ export default function AboutPage() {
           <div className="theme-card overflow-hidden">
 
             <Image
-              src="/images/about/aboutpreview.png"
+              src="/images/about/about-main.jpeg"
               alt="Calming Nook"
               width={800}
               height={600}

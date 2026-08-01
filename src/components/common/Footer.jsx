@@ -50,15 +50,15 @@ export default function Footer() {
                   Explore
                 </h3>
 
-                <div className="flex flex-col gap-1 text-muted">
+                <div className="flex flex-col text-muted">
 
                   <Link href="/">Home</Link>
 
                   <Link href="/about">About</Link>
 
-                  <Link href="/rooms">Rooms</Link>
+                  <Link href="/experiences">Experiences</Link>
 
-                  <Link href="/gallery">Gallery</Link>
+                  <Link href="/contact">Booking</Link>
 
                 </div>
 
@@ -77,7 +77,7 @@ export default function Footer() {
                   Experiences
                 </h3>
 
-                <div className="flex flex-col gap-1 text-muted">
+                <div className="flex flex-col text-muted">
 
                   <p>Mountain Hike</p>
 

@@ -13,7 +13,7 @@ export default function AboutPreview() {
 
           <div className="theme-card absolute left-0 top-0 w-[80%] ">
             <Image
-              src="/images/about/aboutpreview.png"
+              src="/images/about/room-2.jpeg"
               width={500}
               height={500}
               alt="About Calming Nook"
@@ -26,7 +26,7 @@ export default function AboutPreview() {
 
           <div className="theme-card absolute bottom-0 right-0 w-[45%]">
             <Image
-              src="/images/about/aboutpreview2.png"
+              src="/images/about/About-1.jpeg"
               width={400}
               height={400}
               alt="Room Interior"

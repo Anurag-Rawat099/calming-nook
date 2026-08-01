@@ -57,7 +57,7 @@ export default function ContactPage() {
 
       </section>
 
-      <BookingForm />
+      <BookingForm/>
 
       <Footer />
 

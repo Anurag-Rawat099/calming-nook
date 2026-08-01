@@ -1,57 +1,16 @@
 const amenities = [
-  {
-    id:1,
-    title:"Mountain Hike",
-    image:"/images/experiences/Benog-hill.jpeg",
-    duration:"2–3 Hours",
-    level:"Moderate",
-    desc:"Guided mountain trails with breathtaking sunrise and valley views."
-  },
-
-  {
-    id:2,
-    title:"Riverside Hike",
-    image:"/images/experiences/river-hike.jpeg",
-    duration:"1–2 Hours",
-    level:"Easy",
-    desc:"Peaceful walking paths beside flowing rivers and natural scenery."
-  },
-
-  {
-    id:3,
-    title:"Temple Hike",
-    image:"/images/experiences/Naag-mandir.jpeg",
-    duration:"2 Hours",
-    level:"Moderate",
-    desc:"Discover local temples through scenic routes and cultural stories."
-  },
-
-  {
-    id:4,
-    title:"Camping Night",
-    image:"/images/experiences/camping.png",
-    duration:"Evening",
-    level:"Relaxed",
-    desc:"Bonfire evenings under stars with music and warm conversations."
-  },
-
-  {
-    id:5,
-    title:"Village Walk",
-    image:"/images/experiences/village.jpeg",
-    duration:"1 Hour",
-    level:"Easy",
-    desc:"Experience local culture, traditional homes, and hidden paths."
-  },
-
-  {
-    id:6,
-    title:"Forest Trail",
-    image:"/images/experiences/sanctuary.jpeg",
-    duration:"2–4 Hours",
-    level:"Adventurous",
-    desc:"Explore serene forest routes surrounded by nature."
-  }
+  { id: 1, icon: "Wifi", title: "Free WiFi" },
+  { id: 2, icon: "ParkingCircle", title: "Free Parking" },
+  { id: 3, icon: "Bath", title: "Hot Water Geyser" },
+  { id: 4, icon: "Coffee", title: "Electric Kettle" },
+  { id: 5, icon: "BedDouble", title: "Comfortable Beds" },
+  { id: 6, icon: "Tv", title: "Smart TV" },
+  { id: 7, icon: "Utensils", title: "Homely Meals" },
+  { id: 8, icon: "Mountain", title: "Mountain View" },
+  { id: 9, icon: "Trees", title: "Nature Surroundings" },
+  { id: 10, icon: "Flame", title: "Bonfire" },
+  { id: 11, icon: "Snowflake", title: "Room Heater" },
+  { id: 12, icon: "ShieldCheck", title: "Safe Stay" },
 ];
 
 export default amenities;

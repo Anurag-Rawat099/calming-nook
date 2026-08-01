@@ -232,7 +232,7 @@ Sent from Calming Nook Website
               <div>
 
                 <label className="text-sm block mb-3 font-medium">
-                  Room Type
+                  Rooms Needed
                 </label>
 
                 <div className="relative">
@@ -243,8 +243,8 @@ Sent from Calming Nook Website
                   />
 
                   <select
-                    name="roomType"
-                    value={formData.roomType}
+                    name="roomsNeeded"
+                    value={formData.roomsNeeded}
                     onChange={handleChange}
                     className="
                     w-full
@@ -259,19 +259,23 @@ Sent from Calming Nook Website
                   "
                   >
                     <option value="">
-                      Select Room
+                      Select number of rooms
                     </option>
 
                     <option>
-                      Deluxe Room
+                      1 Room
                     </option>
 
                     <option>
-                      Family Suite
+                      2 Rooms
                     </option>
 
                     <option>
-                      Mountain View Room
+                      3 Rooms
+                    </option>
+
+                     <option>
+                      4 Rooms
                     </option>
 
                   </select>
@@ -281,7 +285,8 @@ Sent from Calming Nook Website
               </div>
 
               <Field
-                label="Guests"
+                label="Number of Guests"
+                type="number"
                 icon={<Users size={18} />}
                 name="guests"
                 value={formData.guests}

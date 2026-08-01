@@ -5,11 +5,11 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative h-[60vh] w-full overflow-hidden sm:h-[100vh]">
+    <section className="relative h-[fit-content] w-full pb-4 overflow-hidden md:h-[100vh] max-h-[600px]">
 
       {/* Background */}
       <Image
-        src="/images/hero/hero.png"
+        src="/images/hero/hero-main.jpeg"
         alt="Calming Nook Hero"
         fill
         priority
@@ -24,17 +24,17 @@ export default function Hero() {
 
         <div className="max-w-4xl mx-auto">
 
-          <p className="uppercase tracking-[8px] text-white/80 text-base sm:text-lg mb-5">
+          <p className="uppercase tracking-[8px] text-white text-base sm:text-lg mb-5">
             Welcome To Calming Nook
           </p>
 
-          <h1 className="text-yellow-300/80 font-bold leading-tight text-2xl sm:text-3xl lg:text-6xl">
+          <h1 className="text-yellow-300/90 font-bold leading-tight text-2xl sm:text-3xl lg:text-6xl">
             Escape Into
           
             Peace & Mountains
           </h1>
 
-          <p className="mt-8 max-w-2xl mx-auto text-white/90 text-base sm:text-lg leading-8">
+          <p className=" mt-8 max-w-2xl mx-auto text-white text-base sm:text-lg leading-8 ">
             A boutique homestay experience in the heart of Uttarakhand where
             nature, comfort and calm come together.
           </p>
@@ -44,12 +44,14 @@ export default function Hero() {
            
             <Link
               href="/contact"
-              className="px-7 py-1.5 border border-white/50 text-black bg-[var(--primary)] backdrop-blur-md hover:text-white hover:bg-white/10 transition-all"
+              className="px-7 py-1.5 border border-white/50 text-black bg-white shadow-2xl backdrop-blur-md hover:text-white hover:bg-white/10 transition-all"
             >
               Book Your Stay
+              
             </Link>
 
           </div>
+              <span className="text-sm text-white/99">starting at ₹ 2,500/night</span>
 
         </div>
 

@@ -45,7 +45,7 @@ export default function PahadiCuisine() {
                 className="
                 text-3xl
                 lg:text-5xl
-                font-bold
+                
                 mt-4
                 "
               >

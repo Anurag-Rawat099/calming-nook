@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -12,14 +12,13 @@ export default function Navbar() {
     { title: "Home", link: "/" },
     { title: "About", link: "/about" },
     { title: "Experiences", link: "/experiences" },
-    
     { title: "Contact", link: "/contact" },
   ];
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50">
 
-      {/* Navbar Background */}
+      {/* Background */}
 
       <div className="bg-[var(--paper)] border-b border-black/10 shadow-sm">
 
@@ -30,12 +29,13 @@ export default function Navbar() {
           <Link
             href="/"
             className="flex items-center gap-2 shrink-0"
+            onClick={() => setOpen(false)}
           >
             <Image
               src="/images/logo.png"
               alt="Calming Nook"
-              width={45}
-              height={45}
+              width={44}
+              height={44}
               priority
               className="rounded-md object-cover"
             />
@@ -51,23 +51,26 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Menu */}
+          {/* Desktop Navigation */}
 
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden md:flex items-center gap-8">
 
             {navItems.map((item) => (
+
               <Link
                 key={item.title}
                 href={item.link}
                 className="
                 text-sm
-                transition-all
+                font-medium
+                transition-colors
                 duration-300
                 hover:text-[var(--primary)]
                 "
               >
                 {item.title}
               </Link>
+
             ))}
 
           </div>
@@ -78,15 +81,22 @@ export default function Navbar() {
 
             <Link
               href="/contact"
-              className="hidden md:block primary-btn text-sm px-5 py-2"
+              className="hidden md:inline-flex primary-btn text-sm px-5 py-2"
             >
               Book Stay
             </Link>
 
             <button
-              className="md:hidden"
-              onClick={() => setOpen(!open)}
+              type="button"
               aria-label="Toggle Menu"
+              onClick={() => setOpen((prev) => !prev)}
+              className="
+              md:hidden
+              p-2
+              rounded-md
+              active:scale-95
+              transition
+              "
             >
               {open ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -104,46 +114,55 @@ export default function Navbar() {
         <div
           className="
           absolute
-          top-[70px]
+          top-[60px]
           left-4
           right-4
+          z-50
           md:hidden
           theme-card
+          rounded-2xl
           p-5
-          space-y-4
+          shadow-xl
           "
         >
 
-          {navItems.map((item) => (
+          <div className="flex flex-col">
+
+            {navItems.map((item) => (
+
+              <Link
+                key={item.title}
+                href={item.link}
+                onClick={() => setOpen(false)}
+                className="
+                py-3
+                border-b
+                border-black/5
+                text-sm
+                font-medium
+                transition-colors
+                hover:text-[var(--primary)]
+                "
+              >
+                {item.title}
+              </Link>
+
+            ))}
 
             <Link
-              key={item.title}
-              href={item.link}
+              href="/contact"
               onClick={() => setOpen(false)}
               className="
-              block
-              py-2
-              border-b
-              border-black/5
+              primary-btn
+              mt-5
+              text-center
+              w-full
               "
             >
-              {item.title}
+              Book Stay
             </Link>
 
-          ))}
-
-          <Link
-            href="/contact"
-            onClick={() => setOpen(false)}
-            className="
-            primary-btn
-            w-full
-            text-center
-            block
-            "
-          >
-            Book Stay
-          </Link>
+          </div>
 
         </div>
 
