@@ -15,6 +15,7 @@ export default function PahadiCuisine() {
                 src="/images/about/pahadi-thali.png"
                 alt="Pahadi Thali"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>

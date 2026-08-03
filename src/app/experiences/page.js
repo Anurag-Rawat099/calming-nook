@@ -15,6 +15,7 @@ export default function ExperiencesPage() {
           src="/images/experiences/hiking.png"
           alt="Experiences"
           fill
+          sizes="100vw"
           priority
           className="object-cover"
         />
@@ -123,11 +124,8 @@ export default function ExperiencesPage() {
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="
-                    object-cover
-                    duration-500
-                    group-hover:scale-110
-                    "
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover duration-500 group-hover:scale-110"
                   />
 
                 </div>

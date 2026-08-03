@@ -179,7 +179,7 @@ export default function AboutPage() {
           <div className="theme-card overflow-hidden">
 
             <Image
-              src="/images/about/Founder.jpg"
+              src="/images/about/host.png"
               alt="Founder"
               width={400}
               height={500}
@@ -250,7 +250,7 @@ export default function AboutPage() {
             >
 
               <h3 className="font-bold text-xl">
-                Mr. Panwar
+                Mr. Arjun Panwar
               </h3>
 
               <p className="text-muted">

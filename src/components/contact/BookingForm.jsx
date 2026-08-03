@@ -80,7 +80,7 @@ ${formData.message || "None"}
 Sent from Calming Nook Website
 `;
 
-    const whatsappNumber = "918171325155";
+    const whatsappNumber = "919557803336";
 
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
       message
@@ -116,19 +116,19 @@ Sent from Calming Nook Website
               <ContactItem
                 icon={<Phone size={18} />}
                 title="Phone"
-                value="+91 81713 25155"
+                value="+91 95578 03336" 
               />
 
               <ContactItem
                 icon={<Mail size={18} />}
                 title="Email"
-                value="hello@calmingnook.com"
+                value="clamingnookstays@gmail.com"
               />
 
               <ContactItem
                 icon={<MapPin size={18} />}
                 title="Location"
-                value="Uttarakhand, India"
+                value="Kempty Rd, Mussoorie, Uttarakhand, India, 248179."
               />
 
             </div>

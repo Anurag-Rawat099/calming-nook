@@ -97,6 +97,7 @@ export default function Experiences() {
               <Image
                 src={item.image}
                 fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 alt={item.title}
                 className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
               />

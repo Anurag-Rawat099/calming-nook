@@ -80,11 +80,11 @@ export default function Footer() {
 
                 <div className="flex flex-col gap-1 text-muted">
 
-                  <p>+91 XXXXX XXXXX</p>
+                  <p>+91 95578 03336</p>
 
-                  <p>hello@calmingnook.com</p>
+                  <p>calmingnookstays@gmail.com</p>
 
-                  <p>Uttarakhand, India</p>
+                  <p>Kempty Rd, Mussoorie, Uttarakhand, India, 248179.</p>
 
                 </div>
 
