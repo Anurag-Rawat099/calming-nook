@@ -10,15 +10,7 @@ export default function Footer() {
           {/* LEFT : Branding (1 col) */}
           <div className="lg:col-span-1">
 
-            <h2
-              className="
-              text-2xl
-              sm:text-3xl
-              font-bold
-              tracking-[4px]
-              text-[var(--primary)]
-            "
-            >
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-[4px] text-[var(--primary)]">
               CALMING NOOK
             </h2>
 
@@ -40,13 +32,7 @@ export default function Footer() {
               {/* Explore */}
               <div>
 
-                <h3
-                  className="
-                  font-bold
-                  text-xl
-                  mb-2
-                "
-                >
+                <h3 className="font-bold text-xl mb-2">
                   Explore
                 </h3>
 
@@ -67,13 +53,7 @@ export default function Footer() {
               {/* Experiences */}
               <div>
 
-                <h3
-                  className="
-                  font-bold
-                  text-xl
-                  mb-2
-                "
-                >
+                <h3 className="font-bold text-xl mb-2">
                   Experiences
                 </h3>
 
@@ -94,13 +74,7 @@ export default function Footer() {
               {/* Contact */}
               <div>
 
-                <h3
-                  className="
-                  font-bold
-                  text-xl
-                  mb-2
-                "
-                >
+                <h3 className="font-bold text-xl mb-2">
                   Contact
                 </h3>
 
@@ -124,16 +98,7 @@ export default function Footer() {
 
         {/* Bottom */}
 
-        <div
-          className="
-          border-t
-          border-black/10
-          mt-2
-          pt-2
-          text-center
-          text-muted
-        "
-        >
+        <div className="border-t border-black/10 mt-2 pt-2 text-center text-muted">
           © 2026 Calming Nook · Crafted with care
         </div>
 

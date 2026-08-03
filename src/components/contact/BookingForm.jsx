@@ -15,7 +15,7 @@ export default function BookingForm() {
     name: "",
     email: "",
     phone: "",
-    roomType: "",
+    roomsNeeded: "",
     guests: "",
     checkin: "",
     checkout: "",
@@ -59,7 +59,7 @@ Email: ${formData.email}
 
 🏠 Room Details
 
-Room Type: ${formData.roomType || "Not Selected"}
+Rooms Needed: ${formData.roomsNeeded || "Not Selected"}
 Guests: ${formData.guests}
 
 ━━━━━━━━━━━━━━━
@@ -92,60 +92,23 @@ Sent from Calming Nook Website
   return (
     <section className="py-16">
       <div className="container-custom">
-
-        <div
-          className="
-          grid
-          lg:grid-cols-[380px_1fr]
-          gap-8
-          xl:gap-16
-          items-start
-        "
-        >
+        <div className="grid lg:grid-cols-[380px_1fr] gap-8 xl:gap-16 items-start">
 
           {/* LEFT INFO */}
 
-          <div
-            className="
-            theme-card
-            p-8
-            lg:p-10
-            sticky
-            top-28
-          "
-          >
+          <div className="theme-card p-8 lg:p-10 sticky top-28">
 
-            <p
-              className="
-              text-sm
-              uppercase
-              tracking-[4px]
-              text-[var(--primary)]
-            "
-            >
+            <p className="text-sm uppercase tracking-[4px] text-[var(--primary)]">
               Reach Us
             </p>
 
-            <h3
-              className="
-              text-2xl
-              font-semibold
-              mt-2
-              leading-tight
-            "
-            >
+            <h3 className="text-2xl font-semibold mt-2 leading-tight">
               Your peaceful mountain stay awaits.
             </h3>
 
-            <p
-              className="
-              text-muted
-              mt-3
-              leading-7
-            "
-            >
+            <p className="text-muted mt-3 leading-7">
               Questions about rooms, activities,
-              or bookings? We'd love to help.
+              or bookings? We would love to help.
             </p>
 
             <div className="mt-8 space-y-5">
@@ -174,16 +137,7 @@ Sent from Calming Nook Website
 
           {/* BOOKING FORM */}
 
-          <form
-            onSubmit={handleSubmit}
-            className="
-            theme-card
-            p-6
-            md:p-8
-            lg:p-10
-            space-y-5
-          "
-          >
+          <form onSubmit={handleSubmit} className="theme-card p-6 md:p-8 lg:p-10 space-y-5">
 
             <div>
 
@@ -192,7 +146,7 @@ Sent from Calming Nook Website
               </h3>
 
               <p className="text-muted mt-2">
-                Fill out the details below and we'll
+                Fill out the details below and we will
                 connect with you on WhatsApp.
               </p>
 
@@ -246,17 +200,7 @@ Sent from Calming Nook Website
                     name="roomsNeeded"
                     value={formData.roomsNeeded}
                     onChange={handleChange}
-                    className="
-                    w-full
-                    h-14
-                    rounded-xl
-                    border
-                    border-black/10
-                    bg-white/40
-                    pl-11
-                    pr-4
-                    outline-none
-                  "
+                    className="w-full h-14 rounded-xl border border-black/10 bg-white/40 pl-11 pr-4 outline-none"
                   >
                     <option value="">
                       Select number of rooms
@@ -327,16 +271,7 @@ Sent from Calming Nook Website
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Special requests..."
-                className="
-                w-full
-                rounded-xl
-                border
-                border-black/10
-                bg-white/40
-                p-4
-                resize-none
-                outline-none
-              "
+                className="w-full rounded-xl border border-black/10 bg-white/40 p-4 resize-none outline-none"
               />
 
             </div>
@@ -365,18 +300,7 @@ function ContactItem({
   return (
     <div className="flex gap-4">
 
-      <div
-        className="
-        w-11
-        h-11
-        rounded-full
-        bg-[var(--primary)]/10
-        text-[var(--primary)]
-        flex
-        items-center
-        justify-center
-      "
-      >
+      <div className="w-11 h-11 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center">
         {icon}
       </div>
 
@@ -426,17 +350,7 @@ function Field({
           value={value}
           required={required}
           onChange={onChange}
-          className={`
-            w-full
-            h-14
-            rounded-xl
-            border
-            border-black/10
-            bg-white/40
-            px-5
-            outline-none
-            ${icon ? "pl-11" : ""}
-          `}
+          className={`w-full h-14 rounded-xl border border-black/10 bg-white/40 px-5 outline-none ${icon ? "pl-11" : ""}`}
         />
 
       </div>
@@ -472,17 +386,7 @@ function DateField({
           value={value}
           required={required}
           onChange={onChange}
-          className="
-          w-full
-          h-14
-          rounded-xl
-          border
-          border-black/10
-          bg-white/40
-          pl-11
-          pr-4
-          outline-none
-          "
+          className="w-full h-14 rounded-xl border border-black/10 bg-white/40 pl-11 pr-4 outline-none"
         />
 
       </div>
