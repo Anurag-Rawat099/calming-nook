@@ -10,15 +10,7 @@ export default function Footer() {
           {/* LEFT : Branding (1 col) */}
           <div className="lg:col-span-1">
 
-            <h2
-              className="
-              text-2xl
-              sm:text-3xl
-              font-bold
-              tracking-[4px]
-              text-[var(--primary)]
-            "
-            >
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-[4px] text-[var(--primary)]">
               CALMING NOOK
             </h2>
 
@@ -40,25 +32,19 @@ export default function Footer() {
               {/* Explore */}
               <div>
 
-                <h3
-                  className="
-                  font-bold
-                  text-xl
-                  mb-2
-                "
-                >
+                <h3 className="font-bold text-xl mb-2">
                   Explore
                 </h3>
 
-                <div className="flex flex-col gap-1 text-muted">
+                <div className="flex flex-col text-muted">
 
                   <Link href="/">Home</Link>
 
                   <Link href="/about">About</Link>
 
-                  <Link href="/rooms">Rooms</Link>
+                  <Link href="/experiences">Experiences</Link>
 
-                  <Link href="/gallery">Gallery</Link>
+                  <Link href="/contact">Booking</Link>
 
                 </div>
 
@@ -67,17 +53,11 @@ export default function Footer() {
               {/* Experiences */}
               <div>
 
-                <h3
-                  className="
-                  font-bold
-                  text-xl
-                  mb-2
-                "
-                >
+                <h3 className="font-bold text-xl mb-2">
                   Experiences
                 </h3>
 
-                <div className="flex flex-col gap-1 text-muted">
+                <div className="flex flex-col text-muted">
 
                   <p>Mountain Hike</p>
 
@@ -94,23 +74,17 @@ export default function Footer() {
               {/* Contact */}
               <div>
 
-                <h3
-                  className="
-                  font-bold
-                  text-xl
-                  mb-2
-                "
-                >
+                <h3 className="font-bold text-xl mb-2">
                   Contact
                 </h3>
 
                 <div className="flex flex-col gap-1 text-muted">
 
-                  <p>+91 XXXXX XXXXX</p>
+                  <p>+91 95578 03336</p>
 
-                  <p>hello@calmingnook.com</p>
+                  <p>calmingnookstays@gmail.com</p>
 
-                  <p>Uttarakhand, India</p>
+                  <p>Kempty Rd, Mussoorie, Uttarakhand, India, 248179.</p>
 
                 </div>
 
@@ -124,16 +98,7 @@ export default function Footer() {
 
         {/* Bottom */}
 
-        <div
-          className="
-          border-t
-          border-black/10
-          mt-2
-          pt-2
-          text-center
-          text-muted
-        "
-        >
+        <div className="border-t border-black/10 mt-2 pt-2 text-center text-muted">
           © 2026 Calming Nook · Crafted with care
         </div>
 

@@ -5,7 +5,7 @@ const experiences = [
     title: "Bonfire Night",
     duration: "2 Hours",
     level: "Relaxing",
-    image: "/uploads/experiences/bonfire.jpg",
+    image: "/images/experiences/bonfire.png",
     desc: "Enjoy cozy bonfire evenings under the stars with music, warmth and mountain vibes."
   },
 
@@ -14,7 +14,7 @@ const experiences = [
     title: "Camping",
     duration: "Overnight",
     level: "Easy",
-    image: "/uploads/experiences/camping.jpg",
+    image: "/images/experiences/camping.png",
     desc: "Experience peaceful camping surrounded by nature, fresh air and scenic mountain views."
   },
 
@@ -23,7 +23,7 @@ const experiences = [
     title: "Secret Waterfall",
     duration: "1.5 Hours",
     level: "Moderate",
-    image: "/uploads/experiences/waterfall.jpg",
+    image: "/images/experiences/secret-waterfall.jpeg",
     desc: "Discover hidden waterfalls through beautiful forest paths and untouched landscapes."
   },
 
@@ -32,7 +32,7 @@ const experiences = [
     title: "River Hike",
     duration: "2 Hours",
     level: "Easy",
-    image: "/uploads/experiences/river-hike.jpg",
+    image: "/images/experiences/river-hike.jpeg",
     desc: "Walk along calm riverside trails and enjoy peaceful natural surroundings."
   },
 
@@ -41,7 +41,7 @@ const experiences = [
     title: "Benog Hill Trek",
     duration: "6 Hours",
     level: "Moderate",
-    image: "/uploads/experiences/benog.jpg",
+    image: "/images/experiences/Benog-hill.jpeg",
     desc: "A scenic trek through forests offering panoramic Himalayan and valley views."
   },
 
@@ -50,7 +50,7 @@ const experiences = [
     title: "Wildlife Sanctuary Trek",
     duration: "4 Hours",
     level: "Moderate",
-    image: "/uploads/experiences/wildlife.jpg",
+    image: "/images/experiences/Sanctuary.jpeg",
     desc: "Explore rich biodiversity, birds and peaceful forest trails inside the sanctuary."
   },
 
@@ -59,7 +59,7 @@ const experiences = [
     title: "Naag Mandir Visit",
     duration: "1 Hour",
     level: "Spiritual",
-    image: "/uploads/experiences/naag-mandir.jpg",
+    image: "/images/experiences/Naag-mandir.jpeg",
     desc: "Visit the sacred Naag Mandir surrounded by forests and peaceful mountain scenery."
   },
 
@@ -68,7 +68,7 @@ const experiences = [
     title: "Rishikesh Mandir Tour",
     duration: "3hrs",
     level: "Spiritual",
-    image: "/uploads/experiences/rishikesh.jpg",
+    image: "/images/experiences/rishikesh-temple.jpeg",
     desc: "Explore spiritual temples and experience the peaceful culture of Rishikesh."
   }
 
