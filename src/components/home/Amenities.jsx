@@ -157,7 +157,7 @@ export default function Amenities() {
 
                   <span
                     className="
-                    px-4
+                    px-4  
                     py-2
                     rounded-full
                     bg-white/10
