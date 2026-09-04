@@ -12,49 +12,52 @@ export async function GET(request) {
             return Response.json(
                 {
                     success: false,
-                    message: "Not authenticated",
+                    message: "Not authenticated.",
                 },
                 { status: 401 }
             );
         }
 
-        const tokenCookie = cookieHeader
-            .split(";")
-            .find((cookie) => cookie.trim().startsWith("token="));
+        const cookies = cookieHeader.split(";");
+
+        const tokenCookie = cookies.find((cookie) =>
+            cookie.trim().startsWith("token=")
+        );
 
         if (!tokenCookie) {
             return Response.json(
                 {
                     success: false,
-                    message: "Not authenticated",
+                    message: "Not authenticated.",
                 },
                 { status: 401 }
             );
         }
 
-        const token = tokenCookie.split("=")[1];
+        const token = tokenCookie
+            .trim()
+            .substring("token=".length);
 
-        const decoded = verifyToken(token);
+        const decoded = await verifyToken(token);
 
         if (!decoded) {
             return Response.json(
                 {
                     success: false,
-                    message: "Session expired",
+                    message: "Session expired.",
                 },
                 { status: 401 }
             );
         }
 
-        const admin = await Admin.findById(decoded.id).select(
-            "-password"
-        );
+        const admin = await Admin.findById(decoded.id)
+            .select("-password");
 
         if (!admin || !admin.isActive) {
             return Response.json(
                 {
                     success: false,
-                    message: "Admin not found",
+                    message: "Admin not found.",
                 },
                 { status: 401 }
             );
@@ -77,7 +80,7 @@ export async function GET(request) {
         return Response.json(
             {
                 success: false,
-                message: "Authentication failed",
+                message: "Authentication failed.",
             },
             { status: 500 }
         );

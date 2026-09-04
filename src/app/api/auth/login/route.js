@@ -66,7 +66,7 @@ export async function POST(request) {
         }
 
         // Create JWT
-        const token = createToken({
+        const token = await createToken({
             id: admin._id.toString(),
             email: admin.email,
             role: admin.role,

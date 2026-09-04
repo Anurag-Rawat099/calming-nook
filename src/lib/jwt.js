@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import { SignJWT, jwtVerify } from "jose";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -8,15 +8,26 @@ if (!JWT_SECRET) {
     );
 }
 
-export function createToken(payload) {
-    return jwt.sign(payload, JWT_SECRET, {
-        expiresIn: "7d",
-    });
+const secret = new TextEncoder().encode(JWT_SECRET);
+
+export async function createToken(payload) {
+    return await new SignJWT(payload)
+        .setProtectedHeader({
+            alg: "HS256",
+        })
+        .setIssuedAt()
+        .setExpirationTime("7d")
+        .sign(secret);
 }
 
-export function verifyToken(token) {
+export async function verifyToken(token) {
     try {
-        return jwt.verify(token, JWT_SECRET);
+        const { payload } = await jwtVerify(
+            token,
+            secret
+        );
+
+        return payload;
     } catch (error) {
         return null;
     }
