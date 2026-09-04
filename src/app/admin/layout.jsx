@@ -2,10 +2,8 @@ import Link from "next/link";
 
 import {
   LayoutDashboard,
-  BedDouble,
   CalendarCheck,
   CreditCard,
-  Users,
   Settings,
   ImageIcon,
   LogOut,
@@ -18,11 +16,6 @@ const menuItems = [
     icon: LayoutDashboard,
   },
   {
-    name: "Rooms",
-    href: "/admin/room",
-    icon: BedDouble,
-  },
-  {
     name: "Bookings",
     href: "/admin/bookings",
     icon: CalendarCheck,
@@ -31,11 +24,6 @@ const menuItems = [
     name: "Payments",
     href: "/admin/payments",
     icon: CreditCard,
-  },
-  {
-    name: "Guests",
-    href: "/admin/guests",
-    icon: Users,
   },
   {
     name: "Gallery",
