@@ -49,60 +49,29 @@ export async function POST(request) {
 
     const body = await request.json();
 
-    const {
-      guestName,
-      email,
-      phone,
-      roomType,
-      checkIn,
-      checkOut,
-      adults,
-      children,
-      totalAmount,
-      specialRequest,
-    } = body;
-
-    if (
-      !guestName ||
-      !email ||
-      !phone ||
-      !roomType ||
-      !checkIn ||
-      !checkOut
-    ) {
-      return Response.json(
-        {
-          success: false,
-          message: "Please fill all required fields.",
-        },
-        { status: 400 }
-      );
-    }
-
     const booking = await Booking.create({
-      guestName,
-      email,
-      phone,
-      roomType,
-      checkIn,
-      checkOut,
-      adults,
-      children,
-      totalAmount,
-      specialRequest,
+      guestName: body.guestName,
+      email: body.email,
+      phone: body.phone,
+
+      roomsNeeded: body.roomsNeeded,
+
+      checkIn: body.checkIn,
+      checkOut: body.checkOut,
+
+      adults: body.adults,
+      children: body.children || 0,
+
+      totalAmount: body.totalAmount,
+
+      specialRequest: body.specialRequest,
     });
 
-    return Response.json(
-      {
-        success: true,
-        message: "Booking created successfully.",
-        booking,
-      },
-      { status: 201 }
-    );
+    return Response.json({
+      success: true,
+      booking,
+    });
   } catch (error) {
-    console.error(error);
-
     return Response.json(
       {
         success: false,

@@ -19,9 +19,9 @@ const BookingSchema = new mongoose.Schema(
       required: true,
     },
 
-    roomType: {
-      type: String,
-      required: true,
+    roomsNeeded: {
+      type: Number,
+      default: 1,
     },
 
     checkIn: {
@@ -51,22 +51,13 @@ const BookingSchema = new mongoose.Schema(
 
     status: {
       type: String,
-      enum: [
-        "Pending",
-        "Confirmed",
-        "Cancelled",
-        "Completed",
-      ],
+      enum: ["Pending", "Confirmed", "Cancelled", "Completed"],
       default: "Pending",
     },
 
     paymentStatus: {
       type: String,
-      enum: [
-        "Pending",
-        "Paid",
-        "Refunded",
-      ],
+      enum: ["Pending", "Paid", "Refunded"],
       default: "Pending",
     },
 
@@ -79,7 +70,7 @@ const BookingSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export default mongoose.models.Booking ||

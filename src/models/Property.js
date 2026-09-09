@@ -15,6 +15,11 @@ const PropertySchema = new mongoose.Schema(
     whatsapp: String,
     email: String,
 
+    totalRooms: {
+      type: Number,
+      default: 10,
+    },
+
     googleMapsUrl: String,
 
     checkInTime: String,
@@ -39,7 +44,7 @@ const PropertySchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export default mongoose.models.Property ||
