@@ -1,236 +1,410 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+    CreditCard,
+    IndianRupee,
+    Clock,
+    RotateCcw,
+} from "lucide-react";
+
 export default function PaymentsPage() {
-  return (
-    <div>
-      {/* Header */}
+    const [payments, setPayments] = useState([]);
+    const [stats, setStats] = useState({
+        totalPayments: 0,
+        totalRevenue: 0,
+        pendingAmount: 0,
+        refundedAmount: 0,
+    });
 
-      <div className="flex items-center justify-between mb-10">
-        <div>
-          <p
-            className="
-            uppercase
-            tracking-[6px]
-            text-[var(--primary)]
-            text-xs
-          "
-          >
-            Payment Management
-          </p>
+    const [loading, setLoading] = useState(true);
+    const [updating, setUpdating] = useState(null);
 
-          <h1
-            className="
-            text-4xl
-            font-bold
-            mt-3
-          "
-          >
-            Payments
-          </h1>
-        </div>
+    useEffect(() => {
+        fetchPayments();
+    }, []);
 
-        <button
-          className="
-          bg-[var(--primary)]
-          text-white
-          px-5
-          py-3
-          text-sm
-          font-medium
-        "
-        >
-          Download Report
-        </button>
-      </div>
+    const fetchPayments = async () => {
+        try {
+            setLoading(true);
 
-      {/* Stats */}
+            const res = await fetch(
+                "/api/payments",
+                {
+                    credentials: "include",
+                }
+            );
 
-      <div
-        className="
-        grid
-        grid-cols-1
-        sm:grid-cols-2
-        xl:grid-cols-4
-        gap-4
-        mb-8
-      "
-      >
-        {[
-          {
-            title: "Total Revenue",
-            value: "₹2.4L",
-          },
-          {
-            title: "Pending Payments",
-            value: "₹18K",
-          },
-          {
-            title: "Completed",
-            value: "128",
-          },
-          {
-            title: "Refunds",
-            value: "₹5K",
-          },
-        ].map((item, index) => (
-          <div
-            key={index}
-            className="
-            bg-white
-            border
-            border-black/5
-            p-5
-          "
-          >
-            <p className="text-sm text-black/50">
-              {item.title}
-            </p>
+            const data = await res.json();
 
-            <h2
-              className="
-              text-3xl
-              font-bold
-              mt-3
-              text-[var(--primary)]
-            "
-            >
-              {item.value}
-            </h2>
-          </div>
-        ))}
-      </div>
+            if (data.success) {
+                setPayments(data.payments);
+                setStats(data.stats);
+            } else {
+                console.error(data.message);
+            }
+        } catch (error) {
+            console.error(
+                "Payments fetch error:",
+                error
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
 
-      {/* Payment List */}
+    const updateStatus = async (
+        id,
+        paymentStatus
+    ) => {
+        try {
+            setUpdating(id);
 
-      <div className="space-y-4">
-        {[1, 2, 3, 4, 5].map((payment) => (
-          <div
-            key={payment}
-            className="
-            bg-white
-            border
-            border-black/5
-            p-5
-            flex
-            items-center
-            justify-between
-            gap-5
-          "
-          >
-            {/* Left */}
+            const res = await fetch(
+                `/api/payments/${id}`,
+                {
+                    method: "PUT",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+                    },
+                    body: JSON.stringify({
+                        paymentStatus,
+                    }),
+                }
+            );
+
+            const data = await res.json();
+
+            if (data.success) {
+                fetchPayments();
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Failed to update payment.");
+        } finally {
+            setUpdating(null);
+        }
+    };
+
+    const formatCurrency = (amount) => {
+        return `₹${Number(amount || 0).toLocaleString(
+            "en-IN"
+        )}`;
+    };
+
+    const getStatusClass = (status) => {
+        switch (status) {
+            case "paid":
+                return "bg-green-100 text-green-700";
+
+            case "partially_paid":
+                return "bg-yellow-100 text-yellow-700";
+
+            case "refunded":
+                return "bg-purple-100 text-purple-700";
+
+            case "failed":
+                return "bg-red-100 text-red-700";
+
+            default:
+                return "bg-black/5 text-black/60";
+        }
+    };
+
+    return (
+        <div className="space-y-8">
+
+            {/* HEADER */}
 
             <div>
-              <div className="flex items-center gap-3">
-                <h2
-                  className="
-                  text-lg
-                  font-semibold
-                "
-                >
-                  Rahul Sharma
-                </h2>
+                <p className="uppercase tracking-[6px] text-[var(--primary)] text-xs">
+                    Payment Management
+                </p>
 
-                <span
-                  className="
-                  text-xs
-                  bg-green-100
-                  text-green-700
-                  px-3
-                  py-1
-                "
-                >
-                  Paid
-                </span>
-              </div>
+                <h1 className="text-4xl font-bold mt-3">
+                    Payments
+                </h1>
 
-              <p className="text-sm text-black/50 mt-2">
-                Deluxe Mountain Room
-              </p>
-
-              <div className="flex items-center gap-5 mt-4 flex-wrap">
-                <div>
-                  <p className="text-xs text-black/40">
-                    Transaction ID
-                  </p>
-
-                  <p className="text-sm font-medium mt-1">
-                    TXN874839
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-xs text-black/40">
-                    Payment Method
-                  </p>
-
-                  <p className="text-sm font-medium mt-1">
-                    UPI
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-xs text-black/40">
-                    Date
-                  </p>
-
-                  <p className="text-sm font-medium mt-1">
-                    14 June 2026
-                  </p>
-                </div>
-              </div>
+                <p className="text-black/50 mt-3">
+                    Track booking payments,
+                    revenue and refunds.
+                </p>
             </div>
 
-            {/* Right */}
+            {/* STATS */}
 
-            <div className="text-right">
-              <h3
-                className="
-                text-2xl
-                font-bold
-                text-[var(--primary)]
-              "
-              >
-                ₹9,000
-              </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
 
-              <p className="text-sm text-black/40 mt-1">
-                Total Paid
-              </p>
+                <StatCard
+                    icon={<IndianRupee size={20} />}
+                    title="Total Revenue"
+                    value={formatCurrency(
+                        stats.totalRevenue
+                    )}
+                />
 
-              <div className="flex gap-3 mt-5 justify-end">
-                <button
-                  className="
-                  border
-                  border-black/10
-                  px-5
-                  py-2
-                  text-sm
-                  hover:bg-black
-                  hover:text-white
-                  transition-all
-                "
-                >
-                  Invoice
-                </button>
+                <StatCard
+                    icon={<CreditCard size={20} />}
+                    title="Total Payments"
+                    value={stats.totalPayments}
+                />
 
-                <button
-                  className="
-                  border
-                  border-red-200
-                  text-red-500
-                  px-5
-                  py-2
-                  text-sm
-                  hover:bg-red-500
-                  hover:text-white
-                  transition-all
-                "
-                >
-                  Refund
-                </button>
-              </div>
+                <StatCard
+                    icon={<Clock size={20} />}
+                    title="Pending Amount"
+                    value={formatCurrency(
+                        stats.pendingAmount
+                    )}
+                />
+
+                <StatCard
+                    icon={<RotateCcw size={20} />}
+                    title="Refunded Amount"
+                    value={formatCurrency(
+                        stats.refundedAmount
+                    )}
+                />
+
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+
+            {/* TABLE */}
+
+            <div className="bg-white border border-black/5 overflow-hidden">
+
+                <div className="p-6 border-b border-black/5">
+                    <h2 className="text-xl font-semibold">
+                        Payment Transactions
+                    </h2>
+                </div>
+
+                {loading ? (
+                    <div className="p-12 text-center text-black/50">
+                        Loading payments...
+                    </div>
+                ) : payments.length === 0 ? (
+                    <div className="p-16 text-center">
+
+                        <CreditCard
+                            size={40}
+                            className="mx-auto text-black/20"
+                        />
+
+                        <p className="mt-4 text-black/50">
+                            No payments found.
+                        </p>
+
+                    </div>
+                ) : (
+                    <div className="overflow-x-auto">
+
+                        <table className="w-full text-sm">
+
+                            <thead className="bg-[#faf7f2]">
+
+                                <tr>
+
+                                    <th className="text-left px-6 py-4 font-medium">
+                                        Booking
+                                    </th>
+
+                                    <th className="text-left px-6 py-4 font-medium">
+                                        Guest
+                                    </th>
+
+                                    <th className="text-left px-6 py-4 font-medium">
+                                        Amount
+                                    </th>
+
+                                    <th className="text-left px-6 py-4 font-medium">
+                                        Method
+                                    </th>
+
+                                    <th className="text-left px-6 py-4 font-medium">
+                                        Status
+                                    </th>
+
+                                    <th className="text-left px-6 py-4 font-medium">
+                                        Date
+                                    </th>
+
+                                    <th className="text-right px-6 py-4 font-medium">
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                {payments.map(
+                                    (payment) => (
+                                        <tr
+                                            key={
+                                                payment._id
+                                            }
+                                            className="border-t border-black/5"
+                                        >
+
+                                            <td className="px-6 py-5">
+
+                                                <p className="font-medium">
+                                                    {
+                                                        payment.bookingId
+                                                    }
+                                                </p>
+
+                                            </td>
+
+                                            <td className="px-6 py-5">
+
+                                                <p className="font-medium">
+                                                    {
+                                                        payment.guestName
+                                                    }
+                                                </p>
+
+                                                <p className="text-xs text-black/40 mt-1">
+                                                    {
+                                                        payment.guestEmail
+                                                    }
+                                                </p>
+
+                                            </td>
+
+                                            <td className="px-6 py-5 font-semibold">
+                                                {formatCurrency(
+                                                    payment.amount
+                                                )}
+                                            </td>
+
+                                            <td className="px-6 py-5 capitalize">
+                                                {
+                                                    payment.paymentMethod
+                                                }
+                                            </td>
+
+                                            <td className="px-6 py-5">
+
+                                                <span
+                                                    className={`px-3 py-1 text-xs rounded-full capitalize ${getStatusClass(
+                                                        payment.paymentStatus
+                                                    )}`}
+                                                >
+                                                    {payment.paymentStatus.replace(
+                                                        "_",
+                                                        " "
+                                                    )}
+                                                </span>
+
+                                            </td>
+
+                                            <td className="px-6 py-5 text-black/50">
+
+                                                {new Date(
+                                                    payment.createdAt
+                                                ).toLocaleDateString(
+                                                    "en-IN",
+                                                    {
+                                                        day: "2-digit",
+                                                        month: "short",
+                                                        year: "numeric",
+                                                    }
+                                                )}
+
+                                            </td>
+
+                                            <td className="px-6 py-5">
+
+                                                <div className="flex justify-end gap-2">
+
+                                                    {payment.paymentStatus ===
+                                                        "pending" && (
+                                                        <button
+                                                            disabled={
+                                                                updating ===
+                                                                payment._id
+                                                            }
+                                                            onClick={() =>
+                                                                updateStatus(
+                                                                    payment._id,
+                                                                    "paid"
+                                                                )
+                                                            }
+                                                            className="px-3 py-2 text-xs bg-green-50 text-green-600 hover:bg-green-600 hover:text-white disabled:opacity-50"
+                                                        >
+                                                            Mark Paid
+                                                        </button>
+                                                    )}
+
+                                                    {payment.paymentStatus ===
+                                                        "paid" && (
+                                                        <button
+                                                            disabled={
+                                                                updating ===
+                                                                payment._id
+                                                            }
+                                                            onClick={() =>
+                                                                updateStatus(
+                                                                    payment._id,
+                                                                    "refunded"
+                                                                )
+                                                            }
+                                                            className="px-3 py-2 text-xs bg-red-50 text-red-500 hover:bg-red-500 hover:text-white disabled:opacity-50"
+                                                        >
+                                                            Refund
+                                                        </button>
+                                                    )}
+
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+                                    )
+                                )}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                )}
+
+            </div>
+
+        </div>
+    );
+}
+
+function StatCard({
+    icon,
+    title,
+    value,
+}) {
+    return (
+        <div className="bg-white border border-black/5 p-6">
+
+            <div className="flex items-center justify-between">
+
+                <div className="w-10 h-10 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center">
+                    {icon}
+                </div>
+
+            </div>
+
+            <p className="text-sm text-black/50 mt-5">
+                {title}
+            </p>
+
+            <h2 className="text-2xl font-bold mt-2 text-[var(--primary)]">
+                {value}
+            </h2>
+
+        </div>
+    );
 }

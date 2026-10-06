@@ -6,6 +6,7 @@ import {
     CreditCard,
     Settings,
     ImageIcon,
+    BedDouble,
 } from "lucide-react";
 
 import LogoutButton from "@/components/admin/LogoutButton";
@@ -20,6 +21,11 @@ const menuItems = [
         name: "Bookings",
         href: "/admin/bookings",
         icon: CalendarCheck,
+    },
+    {
+        name: "Rooms",
+        href: "/admin/rooms",
+        icon: BedDouble,
     },
     {
         name: "Payments",
@@ -41,7 +47,7 @@ const menuItems = [
 export default function AdminLayout({ children }) {
     return (
         <div className="min-h-screen bg-[#f8f5ef] flex">
-            
+
             {/* Sidebar */}
 
             <aside
@@ -61,7 +67,7 @@ export default function AdminLayout({ children }) {
                 "
             >
                 <div>
-                    
+
                     {/* Logo */}
 
                     <div className="mb-12">

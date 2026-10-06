@@ -1,77 +1,117 @@
 import mongoose from "mongoose";
 
 const BookingSchema = new mongoose.Schema(
-  {
-    guestName: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+    {
+        bookingId: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true,
+        },
 
-    email: {
-      type: String,
-      required: true,
-      lowercase: true,
-    },
+        guestName: {
+            type: String,
+            required: true,
+            trim: true,
+        },
 
-    phone: {
-      type: String,
-      required: true,
-    },
+        guestEmail: {
+            type: String,
+            required: true,
+            lowercase: true,
+            trim: true,
+        },
 
-    roomsNeeded: {
-      type: Number,
-      default: 1,
-    },
+        guestPhone: {
+            type: String,
+            required: true,
+            trim: true,
+        },
 
-    checkIn: {
-      type: Date,
-      required: true,
-    },
+        roomsNeeded: {
+            type: Number,
+            required: true,
+            min: 1,
+            default: 1,
+        },
 
-    checkOut: {
-      type: Date,
-      required: true,
-    },
+        guests: {
+            type: Number,
+            required: true,
+            min: 1,
+            default: 1,
+        },
 
-    adults: {
-      type: Number,
-      default: 1,
-    },
+        checkIn: {
+            type: Date,
+            required: true,
+        },
 
-    children: {
-      type: Number,
-      default: 0,
-    },
+        checkOut: {
+            type: Date,
+            required: true,
+        },
 
-    totalAmount: {
-      type: Number,
-      required: true,
-    },
+        totalAmount: {
+            type: Number,
+            default: 0,
+            min: 0,
+        },
 
-    status: {
-      type: String,
-      enum: ["Pending", "Confirmed", "Cancelled", "Completed"],
-      default: "Pending",
-    },
+        paymentStatus: {
+            type: String,
+            enum: [
+                "pending",
+                "paid",
+                "partially_paid",
+                "refunded",
+                "failed",
+            ],
+            default: "pending",
+        },
 
-    paymentStatus: {
-      type: String,
-      enum: ["Pending", "Paid", "Refunded"],
-      default: "Pending",
-    },
+        paymentMethod: {
+            type: String,
+            enum: [
+                "cash",
+                "upi",
+                "card",
+                "online",
+                "other",
+            ],
+            default: "other",
+        },
 
-    paymentId: String,
+        bookingStatus: {
+            type: String,
+            enum: [
+                "pending",
+                "confirmed",
+                "completed",
+                "cancelled",
+            ],
+            default: "pending",
+        },
 
-    specialRequest: {
-      type: String,
-      default: "",
+        specialRequest: {
+            type: String,
+            default: "",
+            trim: true,
+        },
+
+        adminNote: {
+            type: String,
+            default: "",
+            trim: true,
+        },
     },
-  },
-  {
-    timestamps: true,
-  },
+    {
+        timestamps: true,
+    }
 );
 
-export default mongoose.models.Booking ||
-  mongoose.model("Booking", BookingSchema);
+const Booking =
+    mongoose.models.Booking ||
+    mongoose.model("Booking", BookingSchema);
+
+export default Booking;
