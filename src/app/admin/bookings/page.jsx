@@ -71,18 +71,25 @@ export default function BookingsPage() {
 
   const filteredBookings = useMemo(() => {
     return bookings.filter((booking) => {
+      const searchText = search.toLowerCase();
+
       const matchesSearch =
         booking.guestName
           ?.toLowerCase()
-          .includes(search.toLowerCase()) ||
-        booking.phone?.includes(search) ||
-        booking.roomType
+          .includes(searchText) ||
+        booking.guestPhone
           ?.toLowerCase()
-          .includes(search.toLowerCase());
+          .includes(searchText) ||
+        booking.guestEmail
+          ?.toLowerCase()
+          .includes(searchText) ||
+        booking.bookingId
+          ?.toLowerCase()
+          .includes(searchText);
 
       const matchesStatus =
         statusFilter === "All" ||
-        booking.status === statusFilter;
+        booking.bookingStatus === statusFilter.toLowerCase();
 
       return matchesSearch && matchesStatus;
     });
@@ -96,21 +103,24 @@ export default function BookingsPage() {
     const todayDate = today.toDateString();
 
     const checkIns = bookings.filter(
-      (b) =>
-        new Date(b.checkIn).toDateString() === todayDate
+      (booking) =>
+        new Date(booking.checkIn).toDateString() === todayDate &&
+        booking.bookingStatus !== "cancelled"
     ).length;
 
     const checkOuts = bookings.filter(
-      (b) =>
-        new Date(b.checkOut).toDateString() === todayDate
+      (booking) =>
+        new Date(booking.checkOut).toDateString() === todayDate &&
+        booking.bookingStatus !== "cancelled"
     ).length;
 
     const pending = bookings.filter(
-      (b) => b.status === "Pending"
+      (booking) => booking.bookingStatus === "pending"
     ).length;
 
     const revenue = bookings.reduce(
-      (sum, booking) => sum + Number(booking.totalAmount || 0),
+      (sum, booking) =>
+        sum + Number(booking.totalAmount || 0),
       0
     );
 
@@ -180,28 +190,30 @@ export default function BookingsPage() {
 
   const exportBookings = () => {
     const headers = [
+      "Booking ID",
       "Guest Name",
       "Phone",
       "Email",
-      "Room",
+      "Rooms",
+      "Guests",
       "Check In",
       "Check Out",
-      "Guests",
       "Amount",
-      "Status",
-      "Payment",
+      "Booking Status",
+      "Payment Status",
     ];
 
     const rows = bookings.map((b) => [
+      b.bookingId,
       b.guestName,
-      b.phone,
-      b.email,
-      b.roomType,
-      new Date(b.checkIn).toLocaleDateString(),
-      new Date(b.checkOut).toLocaleDateString(),
-      `${b.adults} Adults ${b.children || 0} Children`,
+      b.guestPhone,
+      b.guestEmail,
+      b.roomsNeeded,
+      b.guests,
+      new Date(b.checkIn).toLocaleDateString("en-IN"),
+      new Date(b.checkOut).toLocaleDateString("en-IN"),
       b.totalAmount,
-      b.status,
+      b.bookingStatus,
       b.paymentStatus,
     ]);
 
@@ -273,11 +285,11 @@ export default function BookingsPage() {
           onChange={(e) => setStatusFilter(e.target.value)}
           className="bg-[#faf7f2] border border-black/10 px-5 py-3 outline-none"
         >
-          <option>All</option>
-          <option>Pending</option>
-          <option>Confirmed</option>
-          <option>Completed</option>
-          <option>Cancelled</option>
+          <option value="All">All</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
         </select>
       </div>
 
@@ -344,24 +356,40 @@ export default function BookingsPage() {
                   <span
                     className={`text-xs px-3 py-1 ${statusColors[booking.status]}`}
                   >
-                    {booking.status}
+                    {booking.bookingStatus}
                   </span>
                 </div>
 
                 <p className="text-black/50 text-sm">
-                  {booking.roomType || "Room Type"}
-
+                  Booking ID: {booking.bookingId}
                 </p>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-5 text-sm">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-5 text-sm">
 
-                  <Info title="Check In" value={formatDate(booking.checkIn)} />
+                  <Info
+                    title="Check In"
+                    value={formatDate(booking.checkIn)}
+                  />
 
-                  <Info title="Check Out" value={formatDate(booking.checkOut)} />
+                  <Info
+                    title="Check Out"
+                    value={formatDate(booking.checkOut)}
+                  />
 
-                  <Info title="Guests" value={`${booking.adults} Adults`} />
+                  <Info
+                    title="Rooms"
+                    value={booking.roomsNeeded}
+                  />
 
-                  <Info title="Phone" value={booking.phone} />
+                  <Info
+                    title="Guests"
+                    value={booking.guests}
+                  />
+
+                  <Info
+                    title="Phone"
+                    value={booking.guestPhone}
+                  />
 
                 </div>
               </div>
@@ -381,11 +409,17 @@ export default function BookingsPage() {
                 </div>
 
                 <span
-                  className={`inline-block text-xs px-3 py-1 ${paymentColors[booking.paymentStatus] ||
+                  className={`inline-block text-xs px-3 py-1 ${statusColors[
+                    booking.bookingStatus?.charAt(0).toUpperCase() +
+                    booking.bookingStatus?.slice(1)
+                  ] ||
                     "bg-gray-100 text-gray-700"
                     }`}
                 >
-                  {booking.paymentStatus || "Pending"}
+                  {booking.bookingStatus
+                    ? booking.bookingStatus.charAt(0).toUpperCase() +
+                    booking.bookingStatus.slice(1)
+                    : "Pending"}
                 </span>
 
                 <span
@@ -441,26 +475,83 @@ export default function BookingsPage() {
             </h2>
 
             <div className="grid md:grid-cols-2 gap-5 text-sm">
-              <Detail label="Guest Name" value={selectedBooking.guestName} />
-              <Detail label="Phone" value={selectedBooking.phone} />
-              <Detail label="Email" value={selectedBooking.email} />
-              <Detail label="Room" value={selectedBooking.roomType} />
-              <Detail label="Check In" value={formatDate(selectedBooking.checkIn)} />
-              <Detail label="Check Out" value={formatDate(selectedBooking.checkOut)} />
+
+              <Detail
+                label="Booking ID"
+                value={selectedBooking.bookingId}
+              />
+
+              <Detail
+                label="Guest Name"
+                value={selectedBooking.guestName}
+              />
+
+              <Detail
+                label="Phone"
+                value={selectedBooking.guestPhone}
+              />
+
+              <Detail
+                label="Email"
+                value={selectedBooking.guestEmail || "Not provided"}
+              />
+
+              <Detail
+                label="Rooms Needed"
+                value={selectedBooking.roomsNeeded}
+              />
+
               <Detail
                 label="Guests"
-                value={`${selectedBooking.adults} Adults • ${selectedBooking.children} Children`}
+                value={selectedBooking.guests}
               />
+
+              <Detail
+                label="Check In"
+                value={formatDate(selectedBooking.checkIn)}
+              />
+
+              <Detail
+                label="Check Out"
+                value={formatDate(selectedBooking.checkOut)}
+              />
+
+              <Detail
+                label="Booking Status"
+                value={
+                  selectedBooking.bookingStatus
+                    ? selectedBooking.bookingStatus
+                      .charAt(0)
+                      .toUpperCase() +
+                    selectedBooking.bookingStatus.slice(1)
+                    : "Pending"
+                }
+              />
+
+              <Detail
+                label="Payment Status"
+                value={
+                  selectedBooking.paymentStatus || "Pending"
+                }
+              />
+
               <Detail
                 label="Total Amount"
-                value={`₹${Number(selectedBooking.totalAmount || 0).toLocaleString("en-IN")}`}
+                value={`₹${Number(
+                  selectedBooking.totalAmount || 0
+                ).toLocaleString("en-IN")}`}
               />
+
             </div>
 
             <div className="mt-6">
-              <p className="text-xs text-black/40">Special Request</p>
+              <p className="text-xs text-black/40">
+                Special Request
+              </p>
+
               <p className="mt-2 text-sm leading-7 text-black/70">
-                {selectedBooking.specialRequest || "No special request provided."}
+                {selectedBooking.specialRequest ||
+                  "No special request provided."}
               </p>
             </div>
           </div>

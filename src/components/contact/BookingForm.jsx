@@ -87,73 +87,69 @@ export default function BookingForm() {
 
   /* ---------------- SUBMIT ---------------- */
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (
-      !formData.guestName ||
-      !formData.phone ||
-      !formData.checkin ||
-      !formData.checkout
-    ) {
-      alert("Please fill all required fields.");
+  if (
+    !formData.guestName ||
+    !formData.phone ||
+    !formData.checkin ||
+    !formData.checkout
+  ) {
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  if (bookingSummary.nights <= 0) {
+    alert("Check-out date must be after Check-in.");
+    return;
+  }
+
+  if (!availability.isAvailable) {
+    alert("Sorry! No rooms are available for these dates.");
+    return;
+  }
+
+  if (formData.roomsNeeded > availability.availableRooms) {
+    alert(
+      `Only ${availability.availableRooms} rooms are available for selected dates.`
+    );
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    // Save booking in MongoDB
+    const response = await fetch("/api/bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.guestName,
+        email: formData.email,
+        phone: formData.phone,
+
+        roomsNeeded: formData.roomsNeeded,
+        guests: formData.guests,
+
+        checkin: formData.checkin,
+        checkout: formData.checkout,
+
+        message: formData.specialRequest,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      alert(data.message || "Booking failed.");
       return;
     }
 
-    if (bookingSummary.nights <= 0) {
-      alert("Check-out date must be after Check-in.");
-      return;
-    }
-    if (!availability.isAvailable) {
-      alert("Sorry! No rooms are available for these dates.");
-      return;
-    }
-
-    if (formData.roomsNeeded > availability.availableRooms) {
-      alert(
-        `Only ${availability.availableRooms} rooms are available for selected dates.`
-      );
-      return;
-    }
-
-    try {
-      setLoading(true);
-
-      // Save booking in MongoDB
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          guestName: formData.guestName,
-          email: formData.email,
-          phone: formData.phone,
-
-          roomsNeeded: formData.roomsNeeded,
-
-          checkIn: formData.checkin,
-          checkOut: formData.checkout,
-
-          adults: formData.guests,
-          children: 0,
-
-          totalAmount: bookingSummary.totalAmount,
-
-          specialRequest:
-            formData.specialRequest,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!data.success) {
-        alert(data.message);
-        return;
-      }
-
-      // WhatsApp Message
-      const message = `
+    // WhatsApp message
+    const message = `
 🏡 CALMING NOOK BOOKING REQUEST
 
 ━━━━━━━━━━━━━━━━━━
@@ -183,9 +179,7 @@ Total Nights: ${bookingSummary.nights}
 
 💰 Estimated Amount
 
-₹${bookingSummary.totalAmount.toLocaleString(
-        "en-IN"
-      )}
+₹${bookingSummary.totalAmount.toLocaleString("en-IN")}
 
 ━━━━━━━━━━━━━━━━━━
 
@@ -195,44 +189,48 @@ ${formData.specialRequest || "None"}
 
 ━━━━━━━━━━━━━━━━━━
 
+Booking ID: ${data.booking.bookingId}
+
 Booking submitted from Calming Nook Website.
 `;
 
-      const whatsappNumber =
-        "919557803336";
+    const whatsappNumber = "919557803336";
 
-      window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-          message
-        )}`,
-        "_blank"
-      );
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
 
-      alert(
-        "Booking request submitted successfully!"
-      );
+    alert(
+      `Booking request submitted successfully!\nBooking ID: ${data.booking.bookingId}`
+    );
 
-      // Reset Form
-      setFormData({
-        guestName: "",
-        email: "",
-        phone: "",
+    // Reset form
+    setFormData({
+      guestName: "",
+      email: "",
+      phone: "",
+      roomsNeeded: 1,
+      guests: 2,
+      checkin: "",
+      checkout: "",
+      specialRequest: "",
+    });
 
-        roomsNeeded: 1,
-        guests: 2,
+    setAvailability({
+      checking: false,
+      availableRooms: 0,
+      isAvailable: true,
+    });
+  } catch (error) {
+    console.error("Booking error:", error);
 
-        checkin: "",
-        checkout: "",
+    alert("Booking failed. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
-        specialRequest: "",
-      });
-    } catch (error) {
-      console.error(error);
-      alert("Booking failed.");
-    } finally {
-      setLoading(false);
-    }
-  };
   useEffect(() => {
     if (!formData.checkin || !formData.checkout) return;
 
