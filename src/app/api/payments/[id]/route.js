@@ -1,150 +1,89 @@
 import connectDB from "@/lib/mongodb";
-import Payment from "@/models/Payment";
+import Booking from "@/models/Booking";
 import { requireAuth } from "@/lib/auth";
+import mongoose from "mongoose";
 
 export async function PUT(request, { params }) {
-    try {
-        const auth = await requireAuth(request);
+  try {
+    const auth = await requireAuth(request);
 
-        if (!auth.success) {
-            return Response.json(
-                {
-                    success: false,
-                    message: auth.message,
-                },
-                { status: auth.status }
-            );
-        }
-
-        await connectDB();
-
-        const body = await request.json();
-
-        const payment = await Payment.findById(
-            params.id
-        );
-
-        if (!payment) {
-            return Response.json(
-                {
-                    success: false,
-                    message: "Payment not found.",
-                },
-                { status: 404 }
-            );
-        }
-
-        if (body.paymentStatus) {
-            payment.paymentStatus =
-                body.paymentStatus;
-
-            if (
-                body.paymentStatus === "paid"
-            ) {
-                payment.paidAt =
-                    payment.paidAt ||
-                    new Date();
-            }
-
-            if (
-                body.paymentStatus !== "paid"
-            ) {
-                payment.paidAt = null;
-            }
-        }
-
-        if (
-            body.paymentMethod !== undefined
-        ) {
-            payment.paymentMethod =
-                body.paymentMethod;
-        }
-
-        if (
-            body.transactionId !== undefined
-        ) {
-            payment.transactionId =
-                body.transactionId;
-        }
-
-        if (body.note !== undefined) {
-            payment.note = body.note;
-        }
-
-        await payment.save();
-
-        return Response.json({
-            success: true,
-            message:
-                "Payment updated successfully.",
-            payment,
-        });
-    } catch (error) {
-        console.error(
-            "Update payment error:",
-            error
-        );
-
-        return Response.json(
-            {
-                success: false,
-                message:
-                    "Failed to update payment.",
-            },
-            { status: 500 }
-        );
+    if (!auth.success) {
+      return Response.json(
+        { success: false, message: auth.message },
+        { status: auth.status }
+      );
     }
-}
 
-export async function DELETE(request, { params }) {
-    try {
-        const auth = await requireAuth(request);
+    const { id } = await params;
 
-        if (!auth.success) {
-            return Response.json(
-                {
-                    success: false,
-                    message: auth.message,
-                },
-                { status: auth.status }
-            );
-        }
-
-        await connectDB();
-
-        const payment =
-            await Payment.findByIdAndDelete(
-                params.id
-            );
-
-        if (!payment) {
-            return Response.json(
-                {
-                    success: false,
-                    message: "Payment not found.",
-                },
-                { status: 404 }
-            );
-        }
-
-        return Response.json({
-            success: true,
-            message:
-                "Payment deleted successfully.",
-        });
-    } catch (error) {
-        console.error(
-            "Delete payment error:",
-            error
-        );
-
-        return Response.json(
-            {
-                success: false,
-                message:
-                    "Failed to delete payment.",
-            },
-            { status: 500 }
-        );
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return Response.json(
+        { success: false, message: "Invalid booking ID." },
+        { status: 400 }
+      );
     }
+
+    const body = await request.json();
+    const paymentStatus = body.paymentStatus;
+
+    // Only allow the payment actions currently available in the UI.
+    if (!["paid", "refunded"].includes(paymentStatus)) {
+      return Response.json(
+        { success: false, message: "Invalid payment status." },
+        { status: 400 }
+      );
+    }
+
+    await connectDB();
+
+    const booking = await Booking.findById(id);
+
+    if (!booking) {
+      return Response.json(
+        { success: false, message: "Booking not found." },
+        { status: 404 }
+      );
+    }
+
+    if (
+      paymentStatus === "paid" &&
+      booking.paymentStatus !== "pending"
+    ) {
+      return Response.json(
+        {
+          success: false,
+          message: "Only pending payments can be marked as paid.",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (
+      paymentStatus === "refunded" &&
+      booking.paymentStatus !== "paid"
+    ) {
+      return Response.json(
+        {
+          success: false,
+          message: "Only paid bookings can be marked as refunded.",
+        },
+        { status: 400 }
+      );
+    }
+
+    booking.paymentStatus = paymentStatus;
+    await booking.save();
+
+    return Response.json({
+      success: true,
+      message: "Payment status updated successfully.",
+    });
+  } catch (error) {
+    console.error("Update payment error:", error);
+
+    return Response.json(
+      { success: false, message: "Failed to update payment status." },
+      { status: 500 }
+    );
+  }
 }

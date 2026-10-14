@@ -22,11 +22,11 @@ const menuItems = [
         href: "/admin/bookings",
         icon: CalendarCheck,
     },
-    {
-        name: "Rooms",
-        href: "/admin/rooms",
-        icon: BedDouble,
-    },
+    // {
+    //     name: "Rooms",
+    //     href: "/admin/rooms",
+    //     icon: BedDouble,
+    // },
     {
         name: "Payments",
         href: "/admin/payments",
