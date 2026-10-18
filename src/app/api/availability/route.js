@@ -1,17 +1,16 @@
+
 import connectDB from "@/lib/mongodb";
 import Booking from "@/models/Booking";
 import Property from "@/models/Property";
 
 export async function GET(request) {
   try {
-    await connectDB();
-
     const { searchParams } = new URL(request.url);
 
-    const checkIn = searchParams.get("checkIn");
-    const checkOut = searchParams.get("checkOut");
+    const checkInParam = searchParams.get("checkIn");
+    const checkOutParam = searchParams.get("checkOut");
 
-    if (!checkIn || !checkOut) {
+    if (!checkInParam || !checkOutParam) {
       return Response.json(
         {
           success: false,
@@ -21,29 +20,66 @@ export async function GET(request) {
       );
     }
 
-    const property = await Property.findOne();
+    const checkIn = new Date(checkInParam);
+    const checkOut = new Date(checkOutParam);
 
-    const totalRooms = property?.totalRooms || 8;
+    if (
+      Number.isNaN(checkIn.getTime()) ||
+      Number.isNaN(checkOut.getTime()) ||
+      checkOut <= checkIn
+    ) {
+      return Response.json(
+        {
+          success: false,
+          message: "Please provide valid check-in and check-out dates.",
+        },
+        { status: 400 }
+      );
+    }
 
-    // Active bookings overlapping selected dates
+    await connectDB();
+
+    const property = await Property.findOne().lean();
+
+    if (
+      !property ||
+      !Number.isFinite(Number(property.totalRooms)) ||
+      Number(property.totalRooms) < 1
+    ) {
+      return Response.json(
+        {
+          success: false,
+          message:
+            "Property room inventory is not configured. Please check Website Settings.",
+        },
+        { status: 500 }
+      );
+    }
+
+    const totalRooms = Number(property.totalRooms);
+
+    // Only bookings whose stays overlap the requested dates.
+    // Check-out on the requested check-in date does not overlap.
     const bookings = await Booking.find({
-      status: {
-        $in: ["Pending", "Confirmed"],
+      bookingStatus: {
+        $in: ["pending", "confirmed"],
       },
-      checkIn: {
-        $lt: new Date(checkOut),
-      },
-      checkOut: {
-        $gt: new Date(checkIn),
-      },
-    });
+      checkIn: { $lt: checkOut },
+      checkOut: { $gt: checkIn },
+    })
+      .select("roomsNeeded")
+      .lean();
 
     const bookedRooms = bookings.reduce(
-      (sum, booking) => sum + booking.roomsNeeded,
+      (sum, booking) =>
+        sum + Math.max(0, Number(booking.roomsNeeded) || 0),
       0
     );
 
-    const availableRooms = totalRooms - bookedRooms;
+    const availableRooms = Math.max(
+      0,
+      totalRooms - bookedRooms
+    );
 
     return Response.json({
       success: true,
@@ -53,7 +89,7 @@ export async function GET(request) {
       isAvailable: availableRooms > 0,
     });
   } catch (error) {
-    console.error(error);
+    console.error("Availability API error:", error);
 
     return Response.json(
       {
