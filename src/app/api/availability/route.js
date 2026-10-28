@@ -1,4 +1,3 @@
-
 import connectDB from "@/lib/mongodb";
 import Booking from "@/models/Booking";
 import Property from "@/models/Property";
@@ -16,7 +15,7 @@ export async function GET(request) {
           success: false,
           message: "Check-in and check-out required.",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -33,13 +32,16 @@ export async function GET(request) {
           success: false,
           message: "Please provide valid check-in and check-out dates.",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     await connectDB();
 
     const property = await Property.findOne().lean();
+    console.log("Database name:", Property.db.name);
+    console.log("Collection name:", Property.collection.name);
+    console.log("Property found:", property);
 
     if (
       !property ||
@@ -52,7 +54,7 @@ export async function GET(request) {
           message:
             "Property room inventory is not configured. Please check Website Settings.",
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -71,15 +73,11 @@ export async function GET(request) {
       .lean();
 
     const bookedRooms = bookings.reduce(
-      (sum, booking) =>
-        sum + Math.max(0, Number(booking.roomsNeeded) || 0),
-      0
+      (sum, booking) => sum + Math.max(0, Number(booking.roomsNeeded) || 0),
+      0,
     );
 
-    const availableRooms = Math.max(
-      0,
-      totalRooms - bookedRooms
-    );
+    const availableRooms = Math.max(0, totalRooms - bookedRooms);
 
     return Response.json({
       success: true,
@@ -96,7 +94,7 @@ export async function GET(request) {
         success: false,
         message: "Failed to check availability.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

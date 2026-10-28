@@ -8,6 +8,7 @@ export default function SettingsPage() {
 
   const [formData, setFormData] = useState({
     name: "",
+    totalRooms: 8,
     tagline: "",
     description: "",
     address: "",
@@ -145,54 +146,51 @@ export default function SettingsPage() {
       <div className="bg-white border border-black/5 p-8 space-y-10">
         {/* Basic Information */}
 
-      {/* ================= Basic Information ================= */}
+        {/* ================= Basic Information ================= */}
 
-<div className="space-y-6">
-  <div>
-    <h2 className="text-xl font-semibold">
-      Basic Information
-    </h2>
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-xl font-semibold">Basic Information</h2>
 
-    <p className="text-sm text-black/50 mt-1">
-      Manage your homestay name, description and room availability.
-    </p>
-  </div>
+            <p className="text-sm text-black/50 mt-1">
+              Manage your homestay name, description and room availability.
+            </p>
+          </div>
 
-  {/* Top Grid */}
+          {/* Top Grid */}
 
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Input
+              label="Property Name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Calming Nook"
+            />
 
-    <Input
-      label="Property Name"
-      name="name"
-      value={formData.name}
-      onChange={handleChange}
-      placeholder="Calming Nook"
-    />
+            <Input
+              label="Tagline"
+              name="tagline"
+              value={formData.tagline}
+              onChange={handleChange}
+              placeholder="A peaceful stay in the mountains"
+            />
 
-    <Input
-      label="Tagline"
-      name="tagline"
-      value={formData.tagline}
-      onChange={handleChange}
-      placeholder="A peaceful stay in the mountains"
-    />
+            {/* Total Rooms */}
 
-    {/* Total Rooms */}
+            <div>
+              <label className="text-sm font-medium block mb-3">
+                Total Rooms Available
+              </label>
 
-    <div>
-      <label className="text-sm font-medium block mb-3">
-        Total Rooms Available
-      </label>
-
-      <input
-        type="number"
-        min="1"
-        name="totalRooms"
-        value={formData.totalRooms}
-        onChange={handleChange}
-        placeholder="8"
-        className="
+              <input
+                type="number"
+                min="1"
+                name="totalRooms"
+                value={formData.totalRooms}
+                onChange={handleChange}
+                placeholder="8"
+                className="
           w-full
           h-14
           rounded-xl
@@ -204,26 +202,25 @@ export default function SettingsPage() {
           focus:border-[var(--primary)]
           transition-all
         "
-      />
+              />
 
-      <p className="text-xs text-black/40 mt-2">
-        Used to calculate room availability and prevent overbooking.
-      </p>
-    </div>
+              <p className="text-xs text-black/40 mt-2">
+                Used to calculate room availability and prevent overbooking.
+              </p>
+            </div>
+          </div>
 
-  </div>
+          {/* Description */}
 
-  {/* Description */}
-
-  <Textarea
-    label="Property Description"
-    name="description"
-    rows={5}
-    value={formData.description}
-    onChange={handleChange}
-    placeholder="Describe your property, mountain views, amenities, peaceful environment..."
-  />
-</div>
+          <Textarea
+            label="Property Description"
+            name="description"
+            rows={5}
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Describe your property, mountain views, amenities, peaceful environment..."
+          />
+        </div>
 
         {/* Contact */}
 
